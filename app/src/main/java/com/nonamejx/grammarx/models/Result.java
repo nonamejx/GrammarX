@@ -4,35 +4,26 @@ import java.util.UUID;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Result extends RealmObject {
-	private UUID resultId;
+
+	@PrimaryKey
+	@Getter
+	private String resultId;
+
+	@Getter
+	@Setter
 	private long created;
-	
+
+	@Getter
+	@Setter
 	private RealmList<UserAnswerItem> userAnswerItems;
 
 	public Result() {
-		this.resultId = UUID.randomUUID();
-	}
-	
-	public UUID getResultId() {
-		return resultId;
-	}
-
-	public long getCreated() {
-		return created;
-	}
-
-	public void setCreated(long created) {
-		this.created = created;
-	}
-
-	public RealmList<UserAnswerItem> getUserAnswerItems() {
-		return userAnswerItems;
-	}
-
-	public void setUserAnswerItems(RealmList<UserAnswerItem> userAnswerItems) {
-		this.userAnswerItems = userAnswerItems;
+		this.resultId = UUID.randomUUID().toString();
 	}
 	
 	

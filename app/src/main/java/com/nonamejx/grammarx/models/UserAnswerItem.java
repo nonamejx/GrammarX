@@ -3,44 +3,30 @@ package com.nonamejx.grammarx.models;
 import java.util.UUID;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import lombok.Getter;
+import lombok.Setter;
 
 public class UserAnswerItem extends RealmObject {
 
-	private UUID itemId;
+	@PrimaryKey
+	@Getter
+	private String itemId;
+
+	@Getter
+	@Setter
 	private Question question;
+
+	@Getter
+	@Setter
 	private Answer userChoice;
+
+	@Getter
+	@Setter
 	private long created;
 
 	public UserAnswerItem() {
-		this.itemId = UUID.randomUUID();
-	}
-	
-	public UUID getItemId() {
-		return itemId;
-	}
-
-	public Question getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(Question question) {
-		this.question = question;
-	}
-
-	public Answer getUserChoice() {
-		return userChoice;
-	}
-
-	public void setUserChoice(Answer userChoice) {
-		this.userChoice = userChoice;
-	}
-
-	public long getCreated() {
-		return created;
-	}
-
-	public void setCreated(long created) {
-		this.created = created;
+		this.itemId = UUID.randomUUID().toString();
 	}
 
 }

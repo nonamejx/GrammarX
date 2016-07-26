@@ -4,53 +4,35 @@ import java.util.UUID;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Question extends RealmObject{
-	private UUID questionId;
+
+	@PrimaryKey
+	@Getter
+	private String questionId;
+
+	@Getter
+	@Setter
 	private String questionTitle;
+
+	@Getter
+	@Setter
 	private int questionType;
+
+	@Getter
+	@Setter
 	private long created;
-	
+
+	@Getter
+	@Setter
 	private RealmList<Answer> answers;
 
 	public Question() {
-		this.questionId = UUID.randomUUID();
-	}
-	
-	public UUID getQuestionId() {
-		return questionId;
+		this.questionId = UUID.randomUUID().toString();
 	}
 
-	public String getQuestionTitle() {
-		return questionTitle;
-	}
-
-	public void setQuestionTitle(String questionTitle) {
-		this.questionTitle = questionTitle;
-	}
-
-	public int getQuestionType() {
-		return questionType;
-	}
-
-	public void setQuestionType(int questionType) {
-		this.questionType = questionType;
-	}
-
-	public long getCreated() {
-		return created;
-	}
-
-	public void setCreated(long created) {
-		this.created = created;
-	}
-
-	public RealmList<Answer> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(RealmList<Answer> answers) {
-		this.answers = answers;
-	}
 	
 }
