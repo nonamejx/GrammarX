@@ -1,5 +1,7 @@
 package com.nonamejx.grammarx.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.UUID;
 
 import io.realm.RealmList;
@@ -16,18 +18,16 @@ public class Topic extends RealmObject {
 
 	@Getter
 	@Setter
+	@SerializedName("topicTitle")
 	private String topicTitle;
 
 	@Getter
 	@Setter
-	private String topicDescription;
+	private String topicDescription = "No Description";
 
 	@Getter
 	@Setter
-	private long created;
-
-	@Getter
-	@Setter
+	@SerializedName("tests")
 	private RealmList<Test> tests;
 
 	public Topic() {

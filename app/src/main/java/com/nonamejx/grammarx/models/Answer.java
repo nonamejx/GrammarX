@@ -1,5 +1,7 @@
 package com.nonamejx.grammarx.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.UUID;
 
 import io.realm.RealmObject;
@@ -13,13 +15,15 @@ public class Answer extends RealmObject {
 	@Getter
 	private String answerId;
 
-	@Getter
+	@SerializedName("answerTitle")
 	@Setter
-	private String answerContent;
+	@Getter
+	private String answerTitle;
 
-	@Getter
+	@SerializedName("isCorrect")
 	@Setter
-	private boolean correctAnswer;
+	@Getter
+	private boolean isCorrect;
 	
 	public Answer() {
 		this.answerId = UUID.randomUUID().toString();
