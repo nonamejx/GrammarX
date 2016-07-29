@@ -16,7 +16,7 @@ public class Result extends RealmObject {
 
 	@Getter
 	@Setter
-	private long created;
+	private long created = System.currentTimeMillis();
 
 	@Getter
 	@Setter

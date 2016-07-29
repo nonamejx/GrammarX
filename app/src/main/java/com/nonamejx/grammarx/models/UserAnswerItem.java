@@ -23,7 +23,7 @@ public class UserAnswerItem extends RealmObject {
 
 	@Getter
 	@Setter
-	private long created;
+	private long created = System.currentTimeMillis();
 
 	public UserAnswerItem() {
 		this.itemId = UUID.randomUUID().toString();
