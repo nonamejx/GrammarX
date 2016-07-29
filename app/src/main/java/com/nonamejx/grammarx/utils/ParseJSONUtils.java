@@ -1,7 +1,6 @@
 package com.nonamejx.grammarx.utils;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
 import android.util.Log;
 
 import com.google.gson.ExclusionStrategy;
@@ -46,7 +45,7 @@ public class ParseJSONUtils {
     * @param fileName - This file must be in the assets folder, fileName-it's just the name of the file, not the full path
     *
     * */
-    public Level parseLevel(@StringRes String fileName) {
+    public Level parseLevel(String fileName) {
 
         Gson gson = new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
             @Override
@@ -74,7 +73,7 @@ public class ParseJSONUtils {
     * @param fileName - This file must be in the assets folder, it's just the name of the file, not the full path
     *
     * */
-    public String loadJSONFromAssets(@StringRes String fileName) {
+    public String loadJSONFromAssets(String fileName) {
         String json = null;
         InputStream inputStream = null;
 
