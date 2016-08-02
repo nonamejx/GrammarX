@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- background -->
+    <color name="darkPurple">#4A148C</color>
+
+    <!-- progressbar-->
+    <color name="lightWhite">#FAFAFA</color>
+    <color name="lightGray">#E0E0E0</color>
+    <color name="green">#007A00</color>
 </resources>
