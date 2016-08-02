@@ -60,8 +60,7 @@ public class RealmHelper {
         int count = 0;
         List<Test> tests = topic.getTests();
         for (Test t : tests) {
-            if (t.getResult() == null) {
-            } else {
+            if (t.getResult() != null) {
                 count++;
             }
         }

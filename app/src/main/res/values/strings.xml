@@ -2,12 +2,12 @@
     <string name="app_name">GrammarX</string>
 
     <!-- Data file names -->
-    <array name="data_file_names">
+    <string-array name="data_file_names">
         <item>beginner-quizzes.json</item>
         <item>intermediate-quizzes.json</item>
         <item>advanced-quizzes.json</item>
         <item>all-levels-quizzes.json</item>
-    </array>
+    </string-array>
 
     <!-- Levels title -->
     <string name="level_title">Levels</string>
