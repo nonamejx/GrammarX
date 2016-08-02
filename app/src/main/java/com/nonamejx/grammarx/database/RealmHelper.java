@@ -2,6 +2,7 @@ package com.nonamejx.grammarx.database;
 
 import android.content.Context;
 
+import com.nonamejx.grammarx.common.Constant;
 import com.nonamejx.grammarx.models.Answer;
 import com.nonamejx.grammarx.models.Level;
 import com.nonamejx.grammarx.models.Question;
@@ -43,11 +44,11 @@ public class RealmHelper {
     }
 
     public Level getLevel(String levelId) {
-        return mRealm.where(Level.class).equalTo("levelId", levelId).findFirst();
+        return mRealm.where(Level.class).equalTo(Constant.ATTR_LEVEL_ID, levelId).findFirst();
     }
 
     public List<Topic> getTopics(String levelId) {
-        Level level = mRealm.where(Level.class).equalTo("levelId", levelId).findFirst();
+        Level level = mRealm.where(Level.class).equalTo(Constant.ATTR_LEVEL_ID, levelId).findFirst();
         if (level == null) {
             return null;
         }
@@ -55,7 +56,7 @@ public class RealmHelper {
     }
 
     public int countTakenTests(String topicId) {
-        Topic topic = mRealm.where(Topic.class).equalTo("topicId", topicId).findFirst();
+        Topic topic = mRealm.where(Topic.class).equalTo(Constant.ATTR_TOPIC_ID, topicId).findFirst();
         int count = 0;
         List<Test> tests = topic.getTests();
         for (Test t : tests) {
@@ -68,7 +69,7 @@ public class RealmHelper {
     }
 
     public Topic getTopic(String topicId) {
-        return mRealm.where(Topic.class).equalTo("topicId", topicId).findFirst();
+        return mRealm.where(Topic.class).equalTo(Constant.ATTR_TOPIC_ID, topicId).findFirst();
     }
 
     public List<Test> getTests(String topicId) {
