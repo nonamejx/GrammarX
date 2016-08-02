@@ -1,15 +1,21 @@
 package com.nonamejx.grammarx.acitivities;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.nonamejx.grammarx.R;
+import com.nonamejx.grammarx.fragments.LevelFragment;
 
-public class MainActivity extends AppCompatActivity {
+import org.androidannotations.annotations.EActivity;
+
+@EActivity(R.layout.activity_container)
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void afterView() {
+    }
+
+    @Override
+    protected Fragment createFragment() {
+        return LevelFragment.newInstance();
     }
 }
