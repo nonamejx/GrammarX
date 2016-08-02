@@ -11,9 +11,9 @@
                 android:angle="270"
                 />
             <stroke
-                android:width="@dimen/singleBorder"
+                android:width="@dimen/progressbar.border.single_border"
                 android:color="@color/lightGray" />
-            <corners android:radius="@dimen/mediumCornerRadius" />
+            <corners android:radius="@dimen/progressbar.corner.medium_radius" />
         </shape>
     </item>
 
@@ -29,9 +29,9 @@
                     android:angle="270"
                     />
                 <stroke
-                    android:width="@dimen/singleBorder"
+                    android:width="@dimen/progressbar.border.single_border"
                     android:color="@color/lightGray" />
-                <corners android:radius="@dimen/mediumCornerRadius" />
+                <corners android:radius="@dimen/progressbar.corner.medium_radius" />
             </shape>
         </clip>
     </item>
