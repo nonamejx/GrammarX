@@ -33,7 +33,6 @@ public class GrammarXApp extends Application {
         if (RealmHelper.getInstance(this).getLevels().size() == 0) {
             initDataAtFirstRun();
         }
-
     }
 
     /*

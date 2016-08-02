@@ -33,7 +33,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             fragment = createFragment();
             fm.beginTransaction().add(R.id.flContainer, fragment).commit();
         }
-
     }
 
     public void switchFragment(Fragment fragment) {
