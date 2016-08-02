@@ -6,6 +6,9 @@ import com.nonamejx.grammarx.database.RealmHelper;
 import com.nonamejx.grammarx.models.Level;
 import com.nonamejx.grammarx.utils.ParseJSONUtils;
 
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.EApplication;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,21 +18,19 @@ import io.realm.RealmConfiguration;
 /**
  * Created by noname on 25/07/2016.
  */
+@EApplication
 public class GrammarXApp extends Application {
     private static final String TAG = "GrammarXApp";
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
+    @AfterInject
+    public void after(){
         // Configure Realm for the application
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
         // Realm.deleteRealm(realmConfiguration); // Clean the old realm
         Realm.setDefaultConfiguration(realmConfiguration);
 
         // Init data at the first run
-        if (RealmHelper.getInstance(this).getLevels().size() > 0) {
-        } else {
+        if (RealmHelper.getInstance(this).getLevels().size() == 0) {
             initDataAtFirstRun();
         }
 
