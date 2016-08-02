@@ -23,4 +23,5 @@
     <dimen name="item.topic.textView.topicTitle.paddingBottom">10dp</dimen>
     <dimen name="item.newTest.textView.testTitle.testSize">25dp</dimen>
     <dimen name="item.newTest.textView.testTitle.paddingBottom">10dp</dimen>
+    <dimen name="item.textView.study.textSize">16dp</dimen>
 </resources>
