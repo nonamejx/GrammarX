@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
  * Created by noname on 02/08/2016.
  */
 public class ProgressbarAnimation extends Animation {
-    private static final String TAG = "ProgressbarAnimation";
+    private static final String TAG = ProgressbarAnimation.class.getName();
 
     private ProgressBar progressBar;
     private float from;

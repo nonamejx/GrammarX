@@ -3,7 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="singleBorder">1dp</dimen>
-    <dimen name="smallCornerRadius">5dp</dimen>
-    <dimen name="mediumCornerRadius">10dp</dimen>
+    <!-- progressbar -->
+    <dimen name="progressbar.border.single_border">1dp</dimen>
+    <dimen name="progressbar.corner.small_radius">5dp</dimen>
+    <dimen name="progressbar.corner.medium_radius">10dp</dimen>
 </resources>
