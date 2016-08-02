@@ -2,9 +2,25 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="default_horizontal_margin">16dp</dimen>
+    <dimen name="default_vertical_margin">16dp</dimen>
+    <dimen name="default_padding">10dp</dimen>
+    <dimen name="medium_padding">16dp</dimen>
+    <dimen name="default_margin">10dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
 
     <!-- progressbar -->
     <dimen name="progressbar.border.single_border">1dp</dimen>
     <dimen name="progressbar.corner.small_radius">5dp</dimen>
     <dimen name="progressbar.corner.medium_radius">10dp</dimen>
+
+    <!-- text view -->
+    <dimen name="item.level.textView.levelTitle.textSize">25dp</dimen>
+    <dimen name="item.level.textView.levelTitle.paddingBottom">25dp</dimen>
+    <dimen name="item.textView.topTitle.textSize">20dp</dimen>
+    <dimen name="item.generalHeader.textView.drawablePadding">5dp</dimen>
+    <dimen name="item.topic.textView.topicTitle.textSize">25dp</dimen>
+    <dimen name="item.topic.textView.topicTitle.paddingBottom">10dp</dimen>
+    <dimen name="item.newTest.textView.testTitle.testSize">25dp</dimen>
+    <dimen name="item.newTest.textView.testTitle.paddingBottom">10dp</dimen>
 </resources>

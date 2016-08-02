@@ -9,16 +9,12 @@
         <item>all-levels-quizzes.json</item>
     </string-array>
 
-    <!-- Levels title -->
-    <string name="level_title">Levels</string>
-    <!-- Topics title -->
-    <string name="topic_title">Topics</string>
-    <!-- Test title -->
-    <string name="test_title">Tests</string>
+    <!-- Level header title -->
+    <string name="item.level.textView.level_header_title">Levels</string>
 
-    <!-- Button study -->
-    <string name="button_study_level_title">Study this level</string>
-    <string name="button_study_topic_title">Study this topic</string>
-    <string name="button_do_test_title">Do this test</string>
+    <!-- Text view study -->
+    <string name="item.textView.studyLevel">Study this level</string>
+    <string name="item.textView.studyTopic">Study this topic</string>
+    <string name="item.textView.doTest">Do this test</string>
 
 </resources>
