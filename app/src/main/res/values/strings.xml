@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">GrammarX</string>
+
+    <!-- Data file names -->
+    <array name="data_file_names">
+        <item>beginner-quizzes.json</item>
+        <item>intermediate-quizzes.json</item>
+        <item>advanced-quizzes.json</item>
+        <item>all-levels-quizzes.json</item>
+    </array>
+
+    <!-- Levels title -->
+    <string name="level_title">Levels</string>
+    <!-- Topics title -->
+    <string name="topic_title">Topics</string>
+    <!-- Test title -->
+    <string name="test_title">Tests</string>
+
+    <!-- Button study -->
+    <string name="button_study_level_title">Study this level</string>
+    <string name="button_study_topic_title">Study this topic</string>
+    <string name="button_do_test_title">Do this test</string>
+
 </resources>
