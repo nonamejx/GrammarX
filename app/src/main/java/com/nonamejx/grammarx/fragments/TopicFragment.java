@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nonamejx.grammarx.R;
+import com.nonamejx.grammarx.acitivities.MainActivity;
 import com.nonamejx.grammarx.adapters.TopicAdapter;
+import com.nonamejx.grammarx.common.RecyclerTouchListener;
 import com.nonamejx.grammarx.database.RealmHelper;
 import com.nonamejx.grammarx.models.Level;
 import com.nonamejx.grammarx.models.Topic;
@@ -64,6 +66,25 @@ public class TopicFragment extends Fragment {
         ScaleInAnimationAdapter scaleInAdapter = new ScaleInAnimationAdapter(alphaAdapter);
 
         mRecyclerViewTopic.setAdapter(scaleInAdapter);
+
+        // Register onClick for recycler view
+        mRecyclerViewTopic.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerViewTopic, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                if (getContext() instanceof MainActivity) {
+                    if (position == 0) {
+                        ((MainActivity) getContext()).getSupportFragmentManager().popBackStack();
+                    } else {
+                        ((MainActivity) getContext()).switchFragment(TestFragment.newInstance(mTopics.get(position - 1).getTopicId()));
+                    }
+                }
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         return v;
     }

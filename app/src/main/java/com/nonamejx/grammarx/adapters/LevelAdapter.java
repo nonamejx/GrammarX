@@ -1,7 +1,6 @@
 package com.nonamejx.grammarx.adapters;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nonamejx.grammarx.R;
-import com.nonamejx.grammarx.acitivities.MainActivity;
-import com.nonamejx.grammarx.fragments.TopicFragment;
 import com.nonamejx.grammarx.models.Level;
 
 import java.util.List;
@@ -51,12 +48,6 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    private void switchFragment(Fragment fragment) {
-        if (mContext instanceof MainActivity) {
-            ((MainActivity) mContext).switchFragment(fragment);
-        }
-    }
-
     @Override
     public int getItemViewType(int position) {
         return position == 0 ? TYPE_HEADER : TYPE_ITEM;
@@ -75,14 +66,6 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             super(v);
             mTvLevelTitle = (TextView) v.findViewById(R.id.tvLevelTitle);
             mTvStudyLevel = (TextView) v.findViewById(R.id.tvStudyLevel);
-
-            // Register OnClick listener
-            mTvStudyLevel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    switchFragment(TopicFragment.newInstance(mLevels.get(getAdapterPosition() - 1).getLevelId()));
-                }
-            });
         }
     }
 
