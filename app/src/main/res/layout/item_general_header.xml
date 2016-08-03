@@ -5,4 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:drawableLeft="@drawable/ic_left_arrow_white"
-    android:drawablePadding="@dimen/item.generalHeader.textView.drawablePadding" />
+    android:drawablePadding="@dimen/item.general_header.text_view.drawable_padding" />

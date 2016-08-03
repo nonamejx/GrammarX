@@ -4,15 +4,15 @@
     <item android:id="@android:id/background">
         <shape>
             <gradient
-                android:startColor="@color/lightWhite"
-                android:centerColor="@color/lightWhite"
+                android:startColor="@color/colorLightWhite"
+                android:centerColor="@color/colorLightWhite"
                 android:centerY="1.0"
-                android:endColor="@color/lightWhite"
+                android:endColor="@color/colorLightWhite"
                 android:angle="270"
                 />
             <stroke
                 android:width="@dimen/progressbar.border.single_border"
-                android:color="@color/lightGray" />
+                android:color="@color/colorLightGray" />
             <corners android:radius="@dimen/progressbar.corner.medium_radius" />
         </shape>
     </item>
@@ -22,15 +22,15 @@
         <clip>
             <shape>
                 <gradient
-                    android:startColor="@color/green"
-                    android:centerColor="@color/green"
+                    android:startColor="@color/colorGreen"
+                    android:centerColor="@color/colorGreen"
                     android:centerY="1.0"
-                    android:endColor="@color/lightWhite"
+                    android:endColor="@color/colorLightWhite"
                     android:angle="270"
                     />
                 <stroke
                     android:width="@dimen/progressbar.border.single_border"
-                    android:color="@color/lightGray" />
+                    android:color="@color/colorLightGray" />
                 <corners android:radius="@dimen/progressbar.corner.medium_radius" />
             </shape>
         </clip>
