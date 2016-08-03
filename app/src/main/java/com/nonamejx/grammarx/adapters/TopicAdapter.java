@@ -1,7 +1,6 @@
 package com.nonamejx.grammarx.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -59,6 +58,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             final Topic topic = mTopics.get(position - 1);
             int progress = RealmHelper.getInstance(mContext).countTakenTests(topic.getTopicId());
             final ProgressBar progressBarTopic = ((TopicItemViewHolder) holder).mProgressBarTopic;
+            progressBarTopic.setMax(topic.getTests().size());
 
             ((TopicItemViewHolder) holder).mTvTopicTitle.setText(topic.getTopicTitle());
             ((TopicItemViewHolder) holder).mTvTopicProgress.setText(String.format("%d of %d tests completed", progress, progressBarTopic.getMax()));
@@ -119,18 +119,16 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mTvStudyTopic = (TextView) itemView.findViewById(R.id.tvStudyTopic);
             mProgressBarTopic = (ProgressBar) itemView.findViewById(R.id.progressbarTopic);
 
-            // Set max and drawable to progressbar
-            final Topic topic = mTopics.get(getAdapterPosition() - 1);
-            mProgressBarTopic.setMax(topic.getTests().size());
-
-            final Drawable drawable = mContext.getResources().getDrawable(R.drawable.custom_progressbar);
-            mProgressBarTopic.setProgressDrawable(drawable);
+            // Set drawable to progressbar
+            mProgressBarTopic.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.custom_progressbar));
 
             // Register onClick listener
             mTvStudyTopic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    switchFragment(TestFragment.newInstance(topic.getTopicId()));
+                    if (getAdapterPosition() >= 0) {
+                        switchFragment(TestFragment.newInstance(mTopics.get(getAdapterPosition() - 1).getTopicId()));
+                    }
                 }
             });
         }

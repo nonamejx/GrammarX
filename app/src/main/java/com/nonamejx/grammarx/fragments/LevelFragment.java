@@ -32,7 +32,7 @@ public class LevelFragment extends Fragment {
     private List<Level> mLevels;
 
     public static LevelFragment newInstance() {
-        return new LevelFragment();
+        return LevelFragment_.builder().build();
     }
 
     @Override

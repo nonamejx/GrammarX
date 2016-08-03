@@ -16,6 +16,7 @@ import com.nonamejx.grammarx.models.Level;
 import com.nonamejx.grammarx.models.Topic;
 
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 
 import java.util.List;
 
@@ -27,9 +28,9 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
  */
 @EFragment
 public class TopicFragment extends Fragment {
-    public static final String KEY_LEVEL_ID = "LEVEL_ID";
+    @FragmentArg
+    String mLevelId;
 
-    private String mLevelId;
     private Level mLevel;
 
     private RecyclerView mRecyclerViewTopic;
@@ -38,17 +39,12 @@ public class TopicFragment extends Fragment {
     private List<Topic> mTopics;
 
     public static TopicFragment newInstance(String levelId) {
-        TopicFragment fr = new TopicFragment();
-        Bundle args = new Bundle();
-        args.putString(KEY_LEVEL_ID, levelId);
-        fr.setArguments(args);
-        return fr;
+        return TopicFragment_.builder().mLevelId(levelId).build();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLevelId = (String) getArguments().get(KEY_LEVEL_ID);
         mLevel = RealmHelper.getInstance(getContext()).getLevel(mLevelId);
         mTopics = RealmHelper.getInstance(getContext()).getTopics(mLevelId);
     }

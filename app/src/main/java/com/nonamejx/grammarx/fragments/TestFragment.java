@@ -16,6 +16,7 @@ import com.nonamejx.grammarx.models.Test;
 import com.nonamejx.grammarx.models.Topic;
 
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 
 import java.util.List;
 
@@ -27,9 +28,10 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
  */
 @EFragment
 public class TestFragment extends Fragment {
-    public static final String KEY_TOPIC_ID = "TOPIC_ID";
 
-    private String mTopicId;
+    @FragmentArg
+    String mTopicId;
+
     private Topic mTopic;
 
     private RecyclerView mRecyclerViewTest;
@@ -38,17 +40,12 @@ public class TestFragment extends Fragment {
     private List<Test> tests;
 
     public static TestFragment newInstance(String topicId) {
-        TestFragment fragment = new TestFragment();
-        Bundle args = new Bundle();
-        args.putString(KEY_TOPIC_ID, topicId);
-        fragment.setArguments(args);
-        return fragment;
+        return TestFragment_.builder().mTopicId(topicId).build();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTopicId = (String) getArguments().get(KEY_TOPIC_ID);
         mTopic = RealmHelper.getInstance(getContext()).getTopic(mTopicId);
         tests = RealmHelper.getInstance(getContext()).getTests(mTopicId);
     }
