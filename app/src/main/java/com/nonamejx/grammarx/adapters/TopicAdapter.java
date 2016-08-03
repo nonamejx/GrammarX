@@ -28,9 +28,9 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
 
-    private Context mContext;
-    private List<Topic> mTopics;
-    private String mHeaderTitle;
+    private final Context mContext;
+    private final List<Topic> mTopics;
+    private final String mHeaderTitle;
 
     public TopicAdapter(Context context, List<Topic> topics, String headerTitle) {
         this.mContext = context;
@@ -54,40 +54,19 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof TopicHeaderViewHolder) {
-            ((TopicHeaderViewHolder) holder).txtHeader.setText(mHeaderTitle);
-            ((TopicHeaderViewHolder) holder).txtHeader.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mContext instanceof MainActivity) {
-                        MainActivity mainActivity = (MainActivity) mContext;
-                        mainActivity.getSupportFragmentManager().popBackStack();
-                    }
-                }
-            });
+            ((TopicHeaderViewHolder) holder).tvHeader.setText(mHeaderTitle);
         } else if (holder instanceof TopicItemViewHolder) {
             final Topic topic = mTopics.get(position - 1);
-
-            int numberOfTests = topic.getTests().size();
             int progress = RealmHelper.getInstance(mContext).countTakenTests(topic.getTopicId());
+            final ProgressBar progressBarTopic = ((TopicItemViewHolder) holder).progressBarTopic;
 
-            ((TopicItemViewHolder) holder).txtTopicTitle.setText(topic.getTopicTitle());
-            ((TopicItemViewHolder) holder).txtTopicProgress.setText(String.format("%d of %d tests completed", progress, numberOfTests));
+            ((TopicItemViewHolder) holder).tvTopicTitle.setText(topic.getTopicTitle());
+            ((TopicItemViewHolder) holder).tvTopicProgress.setText(String.format("%d of %d tests completed", progress, progressBarTopic.getMax()));
 
-            // Set drawable and animation to progressbar
-            ProgressBar progressBar = ((TopicItemViewHolder) holder).progressBarTopic;
-            progressBar.setMax(numberOfTests);
-            Drawable drawable = mContext.getResources().getDrawable(R.drawable.custom_progressbar);
-            progressBar.setProgressDrawable(drawable);
-            ProgressbarAnimation animation = new ProgressbarAnimation(progressBar, 0, numberOfTests / 2);
+            // Set animation to progressbar
+            ProgressbarAnimation animation = new ProgressbarAnimation(progressBarTopic, 0, progressBarTopic.getMax() / 2);
             animation.setDuration(250);
-            progressBar.startAnimation(animation);
-
-            ((TopicItemViewHolder) holder).txtStudyTopic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    switchFragment(TestFragment.newInstance(topic.getTopicId()));
-                }
-            });
+            progressBarTopic.startAnimation(animation);
         }
     }
 
@@ -98,38 +77,61 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
-            return TYPE_HEADER;
-        }
-        return TYPE_ITEM;
+        return position == 0 ? TYPE_HEADER : TYPE_ITEM;
     }
 
     private void switchFragment(Fragment fragment) {
         if (mContext instanceof MainActivity) {
-            MainActivity mainActivity = (MainActivity) mContext;
-            mainActivity.switchFragment(fragment);
+            ((MainActivity) mContext).switchFragment(fragment);
         }
     }
 
-    public static class TopicHeaderViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtHeader;
+    public class TopicHeaderViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvHeader;
 
         public TopicHeaderViewHolder(View itemView) {
             super(itemView);
-            txtHeader = (TextView) itemView.findViewById(R.id.txtGeneralHeaderTitle);
+            tvHeader = (TextView) itemView.findViewById(R.id.tvGeneralHeaderTitle);
+
+            // Register onClick listener
+            tvHeader.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mContext instanceof MainActivity) {
+                        MainActivity mainActivity = (MainActivity) mContext;
+                        mainActivity.getSupportFragmentManager().popBackStack();
+                    }
+                }
+            });
         }
     }
 
-    public static class TopicItemViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtTopicTitle, txtTopicProgress, txtStudyTopic;
+    public class TopicItemViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvTopicTitle, tvTopicProgress, tvStudyTopic;
         public ProgressBar progressBarTopic;
 
         public TopicItemViewHolder(View itemView) {
             super(itemView);
-            txtTopicTitle = (TextView) itemView.findViewById(R.id.txtTopicTitle);
-            txtTopicProgress = (TextView) itemView.findViewById(R.id.txtTopicProgress);
-            txtStudyTopic = (TextView) itemView.findViewById(R.id.txtStudyTopic);
+            tvTopicTitle = (TextView) itemView.findViewById(R.id.tvTopicTitle);
+            tvTopicProgress = (TextView) itemView.findViewById(R.id.tvTopicProgress);
+            tvStudyTopic = (TextView) itemView.findViewById(R.id.tvStudyTopic);
             progressBarTopic = (ProgressBar) itemView.findViewById(R.id.progressbarTopic);
+
+            // Set max and drawable to progressbar
+            final Topic topic = mTopics.get(getAdapterPosition() - 1);
+            int numberOfTests = topic.getTests().size();
+            progressBarTopic.setMax(numberOfTests);
+
+            final Drawable drawable = mContext.getResources().getDrawable(R.drawable.custom_progressbar);
+            progressBarTopic.setProgressDrawable(drawable);
+
+            // Register onClick listener
+            tvStudyTopic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switchFragment(TestFragment.newInstance(topic.getTopicId()));
+                }
+            });
         }
     }
 }

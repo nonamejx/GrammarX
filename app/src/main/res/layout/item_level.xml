@@ -6,14 +6,14 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/txtLevelTitle"
+        android:id="@+id/tvLevelTitle"
         style="@style/item_level_textView_level_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_rounded_layout_background_top" />
 
     <TextView
-        android:id="@+id/txtStudyLevel"
+        android:id="@+id/tvStudyLevel"
         style="@style/item_textView_study"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

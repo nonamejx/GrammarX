@@ -23,9 +23,9 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_NEW_TEST = 1;
     private static final int TYPE_TAKEN_TEST = 2;
 
-    private Context mContext;
-    private List<Test> mTests;
-    private String mTopicTitle;
+    private final Context mContext;
+    private final List<Test> mTests;
+    private final String mTopicTitle;
 
     public TestAdapter(Context context, List<Test> tests, String topicTitle) {
         this.mContext = context;
@@ -50,24 +50,13 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Test test;
+        final Test test;
         if (holder instanceof TestHeaderViewHolder) {
-            ((TestHeaderViewHolder) holder).txtTestHeaderTitle.setText(mTopicTitle);
-            ((TestHeaderViewHolder) holder).txtTestHeaderTitle.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mContext instanceof MainActivity) {
-                        MainActivity mainActivity = (MainActivity) mContext;
-                        mainActivity.getSupportFragmentManager().popBackStack();
-                    }
-                }
-            });
+            ((TestHeaderViewHolder) holder).tvTestHeaderTitle.setText(mTopicTitle);
         } else if (holder instanceof NewTestViewHolder) {
             test = mTests.get(position - 1);
-            ((NewTestViewHolder) holder).txtTestTitle.setText(test.getTestTitle());
-            ((NewTestViewHolder) holder).txtTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
-        } else if (holder instanceof TakenTestViewHolder) {
-            test = mTests.get(position - 1);
+            ((NewTestViewHolder) holder).tvTestTitle.setText(test.getTestTitle());
+            ((NewTestViewHolder) holder).tvTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
         }
     }
 
@@ -90,34 +79,45 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    public static class TestHeaderViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtTestHeaderTitle;
+    public class TestHeaderViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvTestHeaderTitle;
 
         public TestHeaderViewHolder(View v) {
             super(v);
-            txtTestHeaderTitle = (TextView) v.findViewById(R.id.txtGeneralHeaderTitle);
+            tvTestHeaderTitle = (TextView) v.findViewById(R.id.tvGeneralHeaderTitle);
+
+            // Register onClick listener
+            tvTestHeaderTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mContext instanceof MainActivity) {
+                        MainActivity mainActivity = (MainActivity) mContext;
+                        mainActivity.getSupportFragmentManager().popBackStack();
+                    }
+                }
+            });
         }
 
     }
 
-    public static class NewTestViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtTestTitle, txtTotalQuestion;
+    public class NewTestViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvTestTitle, tvTotalQuestion;
 
         public NewTestViewHolder(View v) {
             super(v);
-            txtTestTitle = (TextView) v.findViewById(R.id.txtTestTitle);
-            txtTotalQuestion = (TextView) v.findViewById(R.id.txtTotalQuestion);
+            tvTestTitle = (TextView) v.findViewById(R.id.tvTestTitle);
+            tvTotalQuestion = (TextView) v.findViewById(R.id.tvTotalQuestion);
         }
     }
 
-    public static class TakenTestViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtTestTitle, txtScore;
+    public class TakenTestViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvTestTitle, tvScore;
         public ProgressBar progressBarTest;
 
         public TakenTestViewHolder(View v) {
             super(v);
-            txtTestTitle = (TextView) v.findViewById(R.id.txtTestTitle);
-            txtScore = (TextView) v.findViewById(R.id.txtScore);
+            tvTestTitle = (TextView) v.findViewById(R.id.tvTestTitle);
+            tvScore = (TextView) v.findViewById(R.id.tvScore);
             progressBarTest = (ProgressBar) v.findViewById(R.id.progressbarTest);
         }
     }

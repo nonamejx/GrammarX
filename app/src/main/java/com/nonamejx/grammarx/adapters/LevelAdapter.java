@@ -24,8 +24,8 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
 
-    private Context mContext;
-    private List<Level> mLevels;
+    private final Context mContext;
+    private final List<Level> mLevels;
 
     public LevelAdapter(Context context, List<Level> levels) {
         mContext = context;
@@ -46,12 +46,40 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        if (viewHolder instanceof LevelHeaderViewHolder) {
-        } else if (viewHolder instanceof LevelItemViewHolder) {
+        if (viewHolder instanceof LevelItemViewHolder) {
             final Level level = mLevels.get(i - 1);
-            ((LevelItemViewHolder) viewHolder).txtLevelTitle.setText(level.getLevelTitle());
+            ((LevelItemViewHolder) viewHolder).tvLevelTitle.setText(level.getLevelTitle());
+        }
+    }
 
-            ((LevelItemViewHolder) viewHolder).txtStudyLevel.setOnClickListener(new View.OnClickListener() {
+    private void switchFragment(Fragment fragment) {
+        if (mContext instanceof MainActivity) {
+            ((MainActivity) mContext).switchFragment(fragment);
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position == 0 ? TYPE_HEADER : TYPE_ITEM;
+    }
+
+    @Override
+    public int getItemCount() {
+        return mLevels.size() + 1;
+    }
+
+    public class LevelItemViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvLevelTitle, tvStudyLevel;
+
+        public LevelItemViewHolder(View v) {
+            super(v);
+            tvLevelTitle = (TextView) v.findViewById(R.id.tvLevelTitle);
+            tvStudyLevel = (TextView) v.findViewById(R.id.tvStudyLevel);
+
+            // Register OnClick listener
+            final int position = getAdapterPosition();
+            final Level level = mLevels.get(position);
+            tvStudyLevel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     switchFragment(TopicFragment.newInstance(level.getLevelId()));
@@ -60,40 +88,12 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    private void switchFragment(Fragment fragment) {
-        if (mContext instanceof MainActivity) {
-            MainActivity mainActivity = (MainActivity) mContext;
-            mainActivity.switchFragment(fragment);
-        }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0) return TYPE_HEADER;
-        else return TYPE_ITEM;
-    }
-
-    @Override
-    public int getItemCount() {
-        return mLevels.size() + 1;
-    }
-
-    public static class LevelItemViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtLevelTitle, txtStudyLevel;
-
-        public LevelItemViewHolder(View v) {
-            super(v);
-            txtLevelTitle = (TextView) v.findViewById(R.id.txtLevelTitle);
-            txtStudyLevel = (TextView) v.findViewById(R.id.txtStudyLevel);
-        }
-    }
-
     public static class LevelHeaderViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtLevelHeaderTitle;
+        public TextView tvLevelHeaderTitle;
 
         public LevelHeaderViewHolder(View v) {
             super(v);
-            txtLevelHeaderTitle = (TextView) v.findViewById(R.id.txtHeaderTitle);
+            tvLevelHeaderTitle = (TextView) v.findViewById(R.id.tvHeaderTitle);
         }
     }
 }
