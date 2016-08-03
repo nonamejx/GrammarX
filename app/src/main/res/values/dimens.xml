@@ -11,6 +11,8 @@
 
     <!-- shape -->
     <dimen name="shape.rounded_background.small_radius">5dp</dimen>
+    <dimen name="shape.defaultPadding">1dp</dimen>
+    <dimen name="shape.paddingBottom">3dp</dimen>
 
     <!-- progressbar -->
     <dimen name="progressbar.border.single_border">1dp</dimen>
