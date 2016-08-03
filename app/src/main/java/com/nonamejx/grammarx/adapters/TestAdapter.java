@@ -70,12 +70,7 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (position == 0) {
             return TYPE_HEADER;
         } else {
-            Test t = mTests.get(position - 1);
-            if (t.getResult() == null) {
-                return TYPE_NEW_TEST;
-            } else {
-                return TYPE_TAKEN_TEST;
-            }
+            return mTests.get(position - 1).getResult() == null ? TYPE_NEW_TEST : TYPE_TAKEN_TEST;
         }
     }
 
@@ -101,7 +96,8 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class NewTestViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTestTitle, tvTotalQuestion;
+        public TextView tvTestTitle;
+        public TextView tvTotalQuestion;
 
         public NewTestViewHolder(View v) {
             super(v);

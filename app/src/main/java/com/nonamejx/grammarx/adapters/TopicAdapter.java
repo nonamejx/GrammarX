@@ -119,8 +119,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             // Set max and drawable to progressbar
             final Topic topic = mTopics.get(getAdapterPosition() - 1);
-            int numberOfTests = topic.getTests().size();
-            progressBarTopic.setMax(numberOfTests);
+            progressBarTopic.setMax(topic.getTests().size());
 
             final Drawable drawable = mContext.getResources().getDrawable(R.drawable.custom_progressbar);
             progressBarTopic.setProgressDrawable(drawable);

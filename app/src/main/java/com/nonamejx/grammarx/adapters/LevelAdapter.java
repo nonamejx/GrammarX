@@ -47,8 +47,7 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         if (viewHolder instanceof LevelItemViewHolder) {
-            final Level level = mLevels.get(i - 1);
-            ((LevelItemViewHolder) viewHolder).tvLevelTitle.setText(level.getLevelTitle());
+            ((LevelItemViewHolder) viewHolder).tvLevelTitle.setText(mLevels.get(i - 1).getLevelTitle());
         }
     }
 
@@ -69,7 +68,8 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class LevelItemViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvLevelTitle, tvStudyLevel;
+        public TextView tvLevelTitle;
+        public TextView tvStudyLevel;
 
         public LevelItemViewHolder(View v) {
             super(v);
@@ -77,12 +77,10 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             tvStudyLevel = (TextView) v.findViewById(R.id.tvStudyLevel);
 
             // Register OnClick listener
-            final int position = getAdapterPosition();
-            final Level level = mLevels.get(position);
             tvStudyLevel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    switchFragment(TopicFragment.newInstance(level.getLevelId()));
+                    switchFragment(TopicFragment.newInstance(mLevels.get(getAdapterPosition()).getLevelId()));
                 }
             });
         }
