@@ -80,7 +80,7 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mTvStudyLevel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    switchFragment(TopicFragment.newInstance(mLevels.get(getAdapterPosition()).getLevelId()));
+                    switchFragment(TopicFragment.newInstance(mLevels.get(getAdapterPosition() - 1).getLevelId()));
                 }
             });
         }
