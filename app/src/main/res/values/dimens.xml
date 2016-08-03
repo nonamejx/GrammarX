@@ -2,9 +2,31 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="default_horizontal_margin">16dp</dimen>
+    <dimen name="default_vertical_margin">16dp</dimen>
+    <dimen name="default_padding">10dp</dimen>
+    <dimen name="medium_padding">16dp</dimen>
+    <dimen name="default_margin">10dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
+
+    <!-- shape -->
+    <dimen name="shape.rounded_background.small_radius">5dp</dimen>
+    <dimen name="shape.default_padding">1dp</dimen>
+    <dimen name="shape.padding_bottom">3dp</dimen>
 
     <!-- progressbar -->
     <dimen name="progressbar.border.single_border">1dp</dimen>
     <dimen name="progressbar.corner.small_radius">5dp</dimen>
     <dimen name="progressbar.corner.medium_radius">10dp</dimen>
+
+    <!-- text view -->
+    <dimen name="item.level.text_view.level_title.text_size">25dp</dimen>
+    <dimen name="item.level.text_view.level_title.padding_bottom">25dp</dimen>
+    <dimen name="item.text_view.top_title.text_size">20dp</dimen>
+    <dimen name="item.general_header.text_view.drawable_padding">5dp</dimen>
+    <dimen name="item.topic.text_view.topic_title.text_size">25dp</dimen>
+    <dimen name="item.topic.text_view.topic_title.padding_bottom">10dp</dimen>
+    <dimen name="item.newtest.text_view.test_title.test_size">25dp</dimen>
+    <dimen name="item.newtest.text_view.test_title.padding_bottom">10dp</dimen>
+    <dimen name="item.text_view.study.text_size">16dp</dimen>
 </resources>

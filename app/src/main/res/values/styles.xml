@@ -8,4 +8,47 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="item_level_textView_level_title">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/item.level.text_view.level_title.text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">@dimen/medium_padding</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+        <item name="android:paddingBottom">@dimen/item.level.text_view.level_title.padding_bottom</item>
+    </style>
+
+    <style name="item_textView_study">
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:background">@drawable/shape_rounded_layout_background_bottom</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/item.text_view.study.text_size</item>
+    </style>
+
+    <style name="item_textView_top_title">
+        <item name="android:textSize">@dimen/item.text_view.top_title.text_size</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="item_topic_textView_topicTitle">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/item.topic.text_view.topic_title.text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">@dimen/medium_padding</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+        <item name="android:paddingBottom">@dimen/item.topic.text_view.topic_title.padding_bottom</item>
+    </style>
+
+    <style name="item_newTest_textView_testTitle">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/item.newtest.text_view.test_title.test_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">@dimen/medium_padding</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+        <item name="android:paddingBottom">@dimen/item.newtest.text_view.test_title.padding_bottom</item>
+    </style>
+
 </resources>

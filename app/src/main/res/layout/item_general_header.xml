@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txtGeneralHeaderTitle"
+    style="@style/item_textView_top_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/ic_left_arrow_white"
+    android:drawablePadding="@dimen/item.general_header.text_view.drawable_padding" />

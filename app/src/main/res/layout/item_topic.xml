@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_margin"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_rounded_layout_background_top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTopicTitle"
+            style="@style/item_topic_textView_topicTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/txtTopicProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingLeft="@dimen/medium_padding" />
+
+        <ProgressBar
+            android:id="@+id/progressbarTopic"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/medium_margin"
+            android:layout_marginRight="@dimen/medium_margin" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtStudyTopic"
+        style="@style/item_textView_study"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_right_arrow"
+        android:text="@string/item.textView.studyTopic" />
+
+</LinearLayout>
