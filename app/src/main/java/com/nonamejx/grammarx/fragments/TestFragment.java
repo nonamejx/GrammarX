@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.nonamejx.grammarx.R;
 import com.nonamejx.grammarx.adapters.TestAdapter;
+import com.nonamejx.grammarx.common.RecyclerTouchListener;
 import com.nonamejx.grammarx.database.RealmHelper;
 import com.nonamejx.grammarx.models.Test;
 import com.nonamejx.grammarx.models.Topic;
@@ -64,7 +65,19 @@ public class TestFragment extends Fragment {
         AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
         ScaleInAnimationAdapter scaleInAdapter = new ScaleInAnimationAdapter(alphaAdapter);
 
+        // set adapter to recycler view
         mRecyclerViewTest.setAdapter(scaleInAdapter);
+
+        // Register onClick for recycler view
+        mRecyclerViewTest.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerViewTest, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+            }
+        }));
 
         return v;
     }

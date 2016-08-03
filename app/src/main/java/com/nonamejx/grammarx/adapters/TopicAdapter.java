@@ -1,7 +1,6 @@
 package com.nonamejx.grammarx.adapters;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nonamejx.grammarx.R;
-import com.nonamejx.grammarx.acitivities.MainActivity;
 import com.nonamejx.grammarx.animations.ProgressbarAnimation;
 import com.nonamejx.grammarx.database.RealmHelper;
-import com.nonamejx.grammarx.fragments.TestFragment;
 import com.nonamejx.grammarx.models.Topic;
 
 import java.util.List;
@@ -80,29 +77,12 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return position == 0 ? TYPE_HEADER : TYPE_ITEM;
     }
 
-    private void switchFragment(Fragment fragment) {
-        if (mContext instanceof MainActivity) {
-            ((MainActivity) mContext).switchFragment(fragment);
-        }
-    }
-
     public class TopicHeaderViewHolder extends RecyclerView.ViewHolder {
         final TextView mTvHeader;
 
         public TopicHeaderViewHolder(View itemView) {
             super(itemView);
             mTvHeader = (TextView) itemView.findViewById(R.id.tvGeneralHeaderTitle);
-
-            // Register onClick listener
-            mTvHeader.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mContext instanceof MainActivity) {
-                        MainActivity mainActivity = (MainActivity) mContext;
-                        mainActivity.getSupportFragmentManager().popBackStack();
-                    }
-                }
-            });
         }
     }
 
@@ -121,16 +101,6 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             // Set drawable to progressbar
             mProgressBarTopic.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.custom_progressbar));
-
-            // Register onClick listener
-            mTvStudyTopic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (getAdapterPosition() >= 0) {
-                        switchFragment(TestFragment.newInstance(mTopics.get(getAdapterPosition() - 1).getTopicId()));
-                    }
-                }
-            });
         }
     }
 }
