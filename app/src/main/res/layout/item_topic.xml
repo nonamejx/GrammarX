@@ -12,14 +12,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txtTopicTitle"
+            android:id="@+id/tvTopicTitle"
             style="@style/item_topic_textView_topicTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical" />
 
         <TextView
-            android:id="@+id/txtTopicProgress"
+            android:id="@+id/tvTopicProgress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -38,7 +38,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtStudyTopic"
+        android:id="@+id/tvStudyTopic"
         style="@style/item_textView_study"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
