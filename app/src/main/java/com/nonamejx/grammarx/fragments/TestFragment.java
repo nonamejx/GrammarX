@@ -72,12 +72,10 @@ public class TestFragment extends Fragment {
         mRecyclerViewTest.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerViewTest, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
             }
 
             @Override
             public void onLongClick(View view, int position) {
-
             }
         }));
 
