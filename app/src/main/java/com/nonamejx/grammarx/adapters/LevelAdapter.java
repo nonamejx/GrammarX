@@ -47,7 +47,7 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         if (viewHolder instanceof LevelItemViewHolder) {
-            ((LevelItemViewHolder) viewHolder).tvLevelTitle.setText(mLevels.get(i - 1).getLevelTitle());
+            ((LevelItemViewHolder) viewHolder).mTvLevelTitle.setText(mLevels.get(i - 1).getLevelTitle());
         }
     }
 
@@ -68,16 +68,16 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class LevelItemViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvLevelTitle;
-        public TextView tvStudyLevel;
+        final TextView mTvLevelTitle;
+        final TextView mTvStudyLevel;
 
         public LevelItemViewHolder(View v) {
             super(v);
-            tvLevelTitle = (TextView) v.findViewById(R.id.tvLevelTitle);
-            tvStudyLevel = (TextView) v.findViewById(R.id.tvStudyLevel);
+            mTvLevelTitle = (TextView) v.findViewById(R.id.tvLevelTitle);
+            mTvStudyLevel = (TextView) v.findViewById(R.id.tvStudyLevel);
 
             // Register OnClick listener
-            tvStudyLevel.setOnClickListener(new View.OnClickListener() {
+            mTvStudyLevel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     switchFragment(TopicFragment.newInstance(mLevels.get(getAdapterPosition()).getLevelId()));
@@ -86,12 +86,12 @@ public class LevelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    public static class LevelHeaderViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvLevelHeaderTitle;
+    public class LevelHeaderViewHolder extends RecyclerView.ViewHolder {
+        final TextView mTvLevelHeaderTitle;
 
         public LevelHeaderViewHolder(View v) {
             super(v);
-            tvLevelHeaderTitle = (TextView) v.findViewById(R.id.tvHeaderTitle);
+            mTvLevelHeaderTitle = (TextView) v.findViewById(R.id.tvHeaderTitle);
         }
     }
 }

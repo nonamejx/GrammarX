@@ -52,11 +52,11 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final Test test;
         if (holder instanceof TestHeaderViewHolder) {
-            ((TestHeaderViewHolder) holder).tvTestHeaderTitle.setText(mTopicTitle);
+            ((TestHeaderViewHolder) holder).mTvTestHeaderTitle.setText(mTopicTitle);
         } else if (holder instanceof NewTestViewHolder) {
             test = mTests.get(position - 1);
-            ((NewTestViewHolder) holder).tvTestTitle.setText(test.getTestTitle());
-            ((NewTestViewHolder) holder).tvTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
+            ((NewTestViewHolder) holder).mTvTestTitle.setText(test.getTestTitle());
+            ((NewTestViewHolder) holder).mTvTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
         }
     }
 
@@ -75,14 +75,14 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class TestHeaderViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTestHeaderTitle;
+        final TextView mTvTestHeaderTitle;
 
         public TestHeaderViewHolder(View v) {
             super(v);
-            tvTestHeaderTitle = (TextView) v.findViewById(R.id.tvGeneralHeaderTitle);
+            mTvTestHeaderTitle = (TextView) v.findViewById(R.id.tvGeneralHeaderTitle);
 
             // Register onClick listener
-            tvTestHeaderTitle.setOnClickListener(new View.OnClickListener() {
+            mTvTestHeaderTitle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (mContext instanceof MainActivity) {
@@ -96,25 +96,26 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class NewTestViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTestTitle;
-        public TextView tvTotalQuestion;
+        final TextView mTvTestTitle;
+        final TextView mTvTotalQuestion;
 
         public NewTestViewHolder(View v) {
             super(v);
-            tvTestTitle = (TextView) v.findViewById(R.id.tvTestTitle);
-            tvTotalQuestion = (TextView) v.findViewById(R.id.tvTotalQuestion);
+            mTvTestTitle = (TextView) v.findViewById(R.id.tvTestTitle);
+            mTvTotalQuestion = (TextView) v.findViewById(R.id.tvTotalQuestion);
         }
     }
 
     public class TakenTestViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTestTitle, tvScore;
-        public ProgressBar progressBarTest;
+        final TextView mTvTestTitle;
+        final TextView mTvScore;
+        final ProgressBar mProgressBarTest;
 
         public TakenTestViewHolder(View v) {
             super(v);
-            tvTestTitle = (TextView) v.findViewById(R.id.tvTestTitle);
-            tvScore = (TextView) v.findViewById(R.id.tvScore);
-            progressBarTest = (ProgressBar) v.findViewById(R.id.progressbarTest);
+            mTvTestTitle = (TextView) v.findViewById(R.id.tvTestTitle);
+            mTvScore = (TextView) v.findViewById(R.id.tvScore);
+            mProgressBarTest = (ProgressBar) v.findViewById(R.id.progressbarTest);
         }
     }
 

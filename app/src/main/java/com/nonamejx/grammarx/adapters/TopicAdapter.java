@@ -54,14 +54,14 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof TopicHeaderViewHolder) {
-            ((TopicHeaderViewHolder) holder).tvHeader.setText(mHeaderTitle);
+            ((TopicHeaderViewHolder) holder).mTvHeader.setText(mHeaderTitle);
         } else if (holder instanceof TopicItemViewHolder) {
             final Topic topic = mTopics.get(position - 1);
             int progress = RealmHelper.getInstance(mContext).countTakenTests(topic.getTopicId());
-            final ProgressBar progressBarTopic = ((TopicItemViewHolder) holder).progressBarTopic;
+            final ProgressBar progressBarTopic = ((TopicItemViewHolder) holder).mProgressBarTopic;
 
-            ((TopicItemViewHolder) holder).tvTopicTitle.setText(topic.getTopicTitle());
-            ((TopicItemViewHolder) holder).tvTopicProgress.setText(String.format("%d of %d tests completed", progress, progressBarTopic.getMax()));
+            ((TopicItemViewHolder) holder).mTvTopicTitle.setText(topic.getTopicTitle());
+            ((TopicItemViewHolder) holder).mTvTopicProgress.setText(String.format("%d of %d tests completed", progress, progressBarTopic.getMax()));
 
             // Set animation to progressbar
             ProgressbarAnimation animation = new ProgressbarAnimation(progressBarTopic, 0, progressBarTopic.getMax() / 2);
@@ -87,14 +87,14 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class TopicHeaderViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvHeader;
+        final TextView mTvHeader;
 
         public TopicHeaderViewHolder(View itemView) {
             super(itemView);
-            tvHeader = (TextView) itemView.findViewById(R.id.tvGeneralHeaderTitle);
+            mTvHeader = (TextView) itemView.findViewById(R.id.tvGeneralHeaderTitle);
 
             // Register onClick listener
-            tvHeader.setOnClickListener(new View.OnClickListener() {
+            mTvHeader.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (mContext instanceof MainActivity) {
@@ -107,25 +107,27 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class TopicItemViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTopicTitle, tvTopicProgress, tvStudyTopic;
-        public ProgressBar progressBarTopic;
+        final TextView mTvTopicTitle;
+        final TextView mTvTopicProgress;
+        final TextView mTvStudyTopic;
+        final ProgressBar mProgressBarTopic;
 
         public TopicItemViewHolder(View itemView) {
             super(itemView);
-            tvTopicTitle = (TextView) itemView.findViewById(R.id.tvTopicTitle);
-            tvTopicProgress = (TextView) itemView.findViewById(R.id.tvTopicProgress);
-            tvStudyTopic = (TextView) itemView.findViewById(R.id.tvStudyTopic);
-            progressBarTopic = (ProgressBar) itemView.findViewById(R.id.progressbarTopic);
+            mTvTopicTitle = (TextView) itemView.findViewById(R.id.tvTopicTitle);
+            mTvTopicProgress = (TextView) itemView.findViewById(R.id.tvTopicProgress);
+            mTvStudyTopic = (TextView) itemView.findViewById(R.id.tvStudyTopic);
+            mProgressBarTopic = (ProgressBar) itemView.findViewById(R.id.progressbarTopic);
 
             // Set max and drawable to progressbar
             final Topic topic = mTopics.get(getAdapterPosition() - 1);
-            progressBarTopic.setMax(topic.getTests().size());
+            mProgressBarTopic.setMax(topic.getTests().size());
 
             final Drawable drawable = mContext.getResources().getDrawable(R.drawable.custom_progressbar);
-            progressBarTopic.setProgressDrawable(drawable);
+            mProgressBarTopic.setProgressDrawable(drawable);
 
             // Register onClick listener
-            tvStudyTopic.setOnClickListener(new View.OnClickListener() {
+            mTvStudyTopic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     switchFragment(TestFragment.newInstance(topic.getTopicId()));
