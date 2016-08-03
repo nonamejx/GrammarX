@@ -38,6 +38,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txtStudyTopic"
         style="@style/item_textView_study"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
