@@ -26,7 +26,6 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
  */
 @EFragment
 public class LevelFragment extends Fragment {
-
     private RecyclerView mRecyclerViewLevel;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;

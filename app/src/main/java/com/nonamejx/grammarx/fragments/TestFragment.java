@@ -27,7 +27,6 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
  */
 @EFragment
 public class TestFragment extends Fragment {
-    private static final String TAG = "TestFragment";
     public static final String KEY_TOPIC_ID = "TOPIC_ID";
 
     private String mTopicId;

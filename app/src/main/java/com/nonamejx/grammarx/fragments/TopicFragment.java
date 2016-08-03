@@ -27,7 +27,6 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
  */
 @EFragment
 public class TopicFragment extends Fragment {
-
     public static final String KEY_LEVEL_ID = "LEVEL_ID";
 
     private String mLevelId;
