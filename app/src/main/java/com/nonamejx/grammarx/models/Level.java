@@ -35,6 +35,7 @@ public class Level extends RealmObject {
 
     public Level() {
         this.levelId = UUID.randomUUID().toString();
+        this.topics = new RealmList<>();
     }
 
 }

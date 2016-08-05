@@ -43,6 +43,7 @@ public class Test extends RealmObject {
 
 	public Test() {
 		this.testId = UUID.randomUUID().toString();
+		this.questions = new RealmList<>();
 	}
 
 }
