@@ -13,4 +13,14 @@
     <color name="colorLightWhite">#FAFAFA</color>
     <color name="colorLightGray">#E0E0E0</color>
     <color name="colorGreen">#007A00</color>
+
+    <!-- chosen answer options -->
+    <color name="colorLightBlue">#80DEEA</color>
+    <color name="colorLightOrange">#FFE0B2</color>
+    <color name="colorLightGreen">#76FF03</color>
+    <color name="colorGray">#9E9E9E</color>
+    <color name="colorDimGreen">#B9F6CA</color>
+    <color name="colorDimRed">#FFCCBC</color>
+    <color name="colorRed">#FF3D00</color>
+
 </resources>

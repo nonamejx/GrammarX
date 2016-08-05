@@ -17,4 +17,13 @@
     <string name="item.textView.studyTopic">Study this topic</string>
     <string name="item.textView.doTest">Do this test</string>
 
+    <!--Text view next-->
+    <string name="fragment.questionDetail.textView.next">Next</string>
+    <string name="fragment.questionDetail.textView.check">Check</string>
+    <string name="fragment.questionDetail.textView.questionInstruction">Choose the best answer</string>
+
+    <!--Text view answer-->
+    <string name="textView.correct">Correct!</string>
+    <string name="textView.incorrect">Incorrect!</string>
+
 </resources>

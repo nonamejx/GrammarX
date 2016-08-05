@@ -8,6 +8,10 @@
     <dimen name="medium_padding">16dp</dimen>
     <dimen name="default_margin">10dp</dimen>
     <dimen name="medium_margin">16dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+
+    <!-- line -->
+    <dimen name="line.single_line">1dp</dimen>
 
     <!-- shape -->
     <dimen name="shape.rounded_background.small_radius">5dp</dimen>
@@ -29,4 +33,8 @@
     <dimen name="item.newtest.text_view.test_title.test_size">25dp</dimen>
     <dimen name="item.newtest.text_view.test_title.padding_bottom">10dp</dimen>
     <dimen name="item.text_view.study.text_size">16dp</dimen>
+
+    <!--Textview question option-->
+    <dimen name="fragment.question_detail.text_view.question_title.text_size">30dp</dimen>
+    <dimen name="textview.answer_option_text_size">16dp</dimen>
 </resources>
