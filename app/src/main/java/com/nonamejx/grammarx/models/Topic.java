@@ -32,6 +32,7 @@ public class Topic extends RealmObject {
 
 	public Topic() {
 		this.topicId = UUID.randomUUID().toString();
+		this.tests = new RealmList<>();
 	}
 
 }
