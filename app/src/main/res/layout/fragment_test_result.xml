@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDarkPurple"
+    android:fillViewport="true"
+    android:padding="@dimen/default_padding">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvQuestionInstruction"
+            style="@style/item_textView_study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_layout_background_top"
+            android:text="@string/fragment.testResult.textView.resultTitle" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line.single_line"
+            android:background="@color/colorLightGray" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChartTestResult"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line.single_line"
+            android:background="@color/colorLightGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:gravity="left"
+                android:padding="@dimen/medium_padding"
+                android:text="Total"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/tvTotalQuestions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:gravity="right"
+                android:padding="@dimen/medium_padding"
+                android:textColor="@color/colorBlack" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line.single_line"
+            android:background="@color/colorLightGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:gravity="left"
+                android:padding="@dimen/medium_padding"
+                android:text="Correct"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/tvCorrectAnswers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:gravity="right"
+                android:padding="@dimen/medium_padding"
+                android:textColor="@color/colorBlack" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line.single_line"
+            android:background="@color/colorLightGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:gravity="left"
+                android:padding="@dimen/medium_padding"
+                android:text="Incorrect"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/tvIncorrectAnswers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:gravity="right"
+                android:padding="@dimen/medium_padding"
+                android:textColor="@color/colorBlack" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnFinish"
+            style="@style/item_textView_study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_layout_background_bottom"
+            android:text="@string/fragment.testResult.button.finish"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack" />
+
+    </LinearLayout>
+
+</ScrollView>
