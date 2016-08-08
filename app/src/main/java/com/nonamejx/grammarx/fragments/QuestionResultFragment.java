@@ -60,6 +60,7 @@ public class QuestionResultFragment extends BaseFragment {
         mUserAnswerItem = Parcels.unwrap(getArguments().getParcelable(KEY_USER_CHOICE));
         mTvQuestionOptions = new TextView[mUserAnswerItem.getQuestion().getAnswers().size()];
         isCorrect = mUserAnswerItem.getUserChoice().isCorrect();
+        // Set background answer options
         if (isCorrect) {
             mTvQuestionResultTitle.setText(getResources().getString(R.string.textView_correct));
             mTvQuestionResultTitle.setBackgroundColor(getResources().getColor(R.color.colorDimGreen));

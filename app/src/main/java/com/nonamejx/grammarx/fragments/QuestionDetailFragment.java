@@ -74,7 +74,6 @@ public class QuestionDetailFragment extends BaseFragment {
         // Create answer options
         for (int i = 0, size = mAnswers.size(); i < size; i++) {
             final int position = i;
-            // mTvAnswerOptions[i] = (TextView) inflater.inflate(R.layout.textview_answer_option, container, false);
             mTvAnswerOptions[i] = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.textview_answer_option, null, false);
             mTvAnswerOptions[i].setText(mAnswers.get(i).getAnswerTitle());
             mTvAnswerOptions[i].setOnClickListener(new View.OnClickListener() {
