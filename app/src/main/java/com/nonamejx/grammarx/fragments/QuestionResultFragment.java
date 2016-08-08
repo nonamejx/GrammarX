@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,8 +28,8 @@ public class QuestionResultFragment extends BaseFragment {
 
     @ViewById(R.id.llAnswerOptionsContainer)
     LinearLayout mLlAnswerOptionsContainer;
-    @ViewById(R.id.tvQuestionResultTitle)
-    TextView mTvQuestionResultTitle;
+    @ViewById(R.id.flResultTitleContainer)
+    FrameLayout mFlResultTitleContainer;
     @ViewById(R.id.tvQuestionTitle)
     TextView mTvQuestionTitle;
     @ViewById(R.id.btnNext)
@@ -62,14 +63,9 @@ public class QuestionResultFragment extends BaseFragment {
         isCorrect = mUserAnswerItem.getUserChoice().isCorrect();
         // Set background answer options
         if (isCorrect) {
-            mTvQuestionResultTitle.setText(getResources().getString(R.string.textView_correct));
-            mTvQuestionResultTitle.setBackgroundColor(getResources().getColor(R.color.colorDimGreen));
-            mTvQuestionResultTitle.setTextColor(getResources().getColor(R.color.colorGreen));
-
+            mFlResultTitleContainer.addView(LayoutInflater.from(getContext()).inflate(R.layout.textview_correct_question_result_title, null, false));
         } else {
-            mTvQuestionResultTitle.setText(getResources().getString(R.string.textView_incorrect));
-            mTvQuestionResultTitle.setBackgroundColor(getResources().getColor(R.color.colorDimRed));
-            mTvQuestionResultTitle.setTextColor(getResources().getColor(R.color.colorRed));
+            mFlResultTitleContainer.addView(LayoutInflater.from(getContext()).inflate(R.layout.textview_incorrect_question_result_title, null, false));
         }
         mTvQuestionTitle.setText(mUserAnswerItem.getQuestion().getQuestionTitle());
         for (int i = 0, size = mUserAnswerItem.getQuestion().getAnswers().size(); i < size; i++) {

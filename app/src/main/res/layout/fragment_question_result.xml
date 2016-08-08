@@ -9,13 +9,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvQuestionResultTitle"
-            style="@style/item_textView_study"
+        <FrameLayout
+            android:id="@+id/flResultTitleContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_rounded_layout_background_top"
-            android:text="@string/fragment.questionDetail.textView.questionInstruction" />
+            android:layout_height="wrap_content"/>
 
         <View
             android:layout_width="match_parent"

@@ -75,5 +75,22 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/textview.answer_option_text_size</item>
     </style>
+    
+    <style name="fragment_questionResult_textView_resultTitle_correct">
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:background">@drawable/shape_correct_question_result_title</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/item.text_view.study.text_size</item>
+        <item name="android:textColor">@color/colorGreen</item>
+    </style>
+
+    <style name="fragment_questionResult_textView_resultTitle_incorrect">
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:background">@drawable/shape_incorrect_question_result_title</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/item.text_view.study.text_size</item>
+        <item name="android:colorBackground">@color/colorDimRed</item>
+        <item name="android:textColor">@color/colorRed</item>
+    </style>
 
 </resources>
