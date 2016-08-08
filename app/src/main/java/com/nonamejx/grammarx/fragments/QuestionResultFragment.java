@@ -61,7 +61,7 @@ public class QuestionResultFragment extends BaseFragment {
         mUserAnswerItem = Parcels.unwrap(getArguments().getParcelable(KEY_USER_CHOICE));
         mTvQuestionOptions = new TextView[mUserAnswerItem.getQuestion().getAnswers().size()];
         isCorrect = mUserAnswerItem.getUserChoice().isCorrect();
-        // Set background answer options
+        // Set result title
         if (isCorrect) {
             mFlResultTitleContainer.addView(LayoutInflater.from(getContext()).inflate(R.layout.textview_correct_question_result_title, null, false));
         } else {
