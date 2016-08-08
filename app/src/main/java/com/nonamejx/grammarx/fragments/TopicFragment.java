@@ -75,7 +75,7 @@ public class TopicFragment extends Fragment {
                     if (position == 0) {
                         ((MainActivity) getContext()).getSupportFragmentManager().popBackStack();
                     } else {
-                        ((MainActivity) getContext()).switchFragment(TestFragment.newInstance(mTopics.get(position - 1).getTopicId()));
+                        ((MainActivity) getContext()).switchFragment(TestFragment.newInstance(mTopics.get(position - 1).getTopicId()), true);
                     }
                 }
             }
