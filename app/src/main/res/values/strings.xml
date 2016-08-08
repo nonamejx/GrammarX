@@ -23,6 +23,9 @@
     <string name="fragment.questionDetail.textView.questionInstruction">Choose the best answer</string>
     <string name="fragment.testResult.textView.resultTitle">Your result</string>
     <string name="fragment.testResult.button.finish">Finish</string>
+    <string name="fragment.testResult.textView.incorrect">Incorrect</string>
+    <string name="fragment.testResult.textView.correct">Correct</string>
+    <string name="fragment.testResult.textView.total">Total</string>
 
     <!--Text view answer-->
     <string name="textView.correct">Correct!</string>

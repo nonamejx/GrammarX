@@ -52,7 +52,7 @@
                 android:background="@color/colorWhite"
                 android:gravity="left"
                 android:padding="@dimen/medium_padding"
-                android:text="Total"
+                android:text="@string/fragment.testResult.textView.total"
                 android:textColor="@color/colorBlack" />
 
             <TextView
@@ -84,7 +84,7 @@
                 android:background="@color/colorWhite"
                 android:gravity="left"
                 android:padding="@dimen/medium_padding"
-                android:text="Correct"
+                android:text="@string/fragment.testResult.textView.correct"
                 android:textColor="@color/colorBlack" />
 
             <TextView
@@ -116,7 +116,7 @@
                 android:background="@color/colorWhite"
                 android:gravity="left"
                 android:padding="@dimen/medium_padding"
-                android:text="Incorrect"
+                android:text="@string/fragment.testResult.textView.incorrect"
                 android:textColor="@color/colorBlack" />
 
             <TextView
