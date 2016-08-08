@@ -21,6 +21,8 @@
     <string name="fragment.questionDetail.textView.next">Next</string>
     <string name="fragment.questionDetail.textView.check">Check</string>
     <string name="fragment.questionDetail.textView.questionInstruction">Choose the best answer</string>
+    <string name="fragment.testResult.textView.resultTitle">Your result</string>
+    <string name="fragment.testResult.button.finish">Finish</string>
 
     <!--Text view answer-->
     <string name="textView.correct">Correct!</string>
