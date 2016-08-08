@@ -2,8 +2,6 @@ package com.nonamejx.grammarx.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -21,6 +19,7 @@ import com.nonamejx.grammarx.R;
 import com.nonamejx.grammarx.acitivities.MainActivity;
 import com.nonamejx.grammarx.models.Result;
 
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.parceler.Parcels;
@@ -33,6 +32,7 @@ import java.util.List;
  */
 @EFragment(R.layout.fragment_test_result)
 public class TestResultFragment extends BaseFragment {
+    private static final String TAG = TestResultFragment.class.getName();
     private static final String KEY_TEST_RESULT = "TEST_RESULT";
 
     private Result mResult;
@@ -51,34 +51,28 @@ public class TestResultFragment extends BaseFragment {
     private String[] mXData = {"Correct", "Incorrect"};
 
     public static TestResultFragment newInstance(Result result) {
-        TestResultFragment fr = new TestResultFragment();
+        TestResultFragment fr = new TestResultFragment_();
         Bundle args = new Bundle();
         args.putParcelable(KEY_TEST_RESULT, Parcels.wrap(result));
         fr.setArguments(args);
         return fr;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mResult = Parcels.unwrap(getArguments().getParcelable(KEY_TEST_RESULT));
-        mYData[0] = countCorrectAnswer(mResult);
-        mYData[1] = mResult.getUserAnswerItems().size() - mYData[0];
+    @Click(R.id.btnFinish)
+    void onButtonFinishClick() {
+        ((MainActivity) getContext()).getSupportFragmentManager().popBackStack();
     }
 
     @Override
     public void afterView() {
+        // Init data
+        mResult = Parcels.unwrap(getArguments().getParcelable(KEY_TEST_RESULT));
+        mYData[0] = countCorrectAnswer(mResult);
+        mYData[1] = mResult.getUserAnswerItems().size() - mYData[0];
+        // Set data to textView
         mTvTotalQuestions.setText(mResult.getUserAnswerItems().size() + "");
         mTvCorrectAnswers.setText((int) mYData[0] + "");
         mTvIncorrectAnswers.setText((int) mYData[1] + "");
-
-        mBtnFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainActivity) getContext()).getSupportFragmentManager().popBackStack();
-            }
-        });
-
         // Configure pie chart
         mPieChartTestResult.setUsePercentValues(true);
         mPieChartTestResult.setDescription("");
@@ -110,10 +104,8 @@ public class TestResultFragment extends BaseFragment {
         });
         // Add data
         addDataToPieChart();
-
         // Set animation
         mPieChartTestResult.animateY(1400, Easing.EasingOption.EaseInOutQuad);
-
         // Customize legends
         Legend l = mPieChartTestResult.getLegend();
         l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);

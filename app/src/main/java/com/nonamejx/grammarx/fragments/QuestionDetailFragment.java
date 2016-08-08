@@ -1,8 +1,6 @@
 package com.nonamejx.grammarx.fragments;
 
 import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,7 @@ import com.nonamejx.grammarx.models.Answer;
 import com.nonamejx.grammarx.models.Question;
 import com.nonamejx.grammarx.models.UserAnswerItem;
 
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
@@ -58,25 +57,20 @@ public class QuestionDetailFragment extends BaseFragment {
         return fr;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mQuestion = RealmHelper.getInstance(getContext()).getQuestion(mQuestionId);
-        mAnswers = mQuestion.getAnswers();
-        mTvAnswerOptions = new TextView[mAnswers.size()];
-        mUserAnswerItem = new UserAnswerItem();
+    @Click(R.id.btnCheck)
+    void onButtonCheckClick() {
+        if (mSelectedOptionPosition >= 0 && mUserAnswerItem != null) {
+            mIAnswerOptionOnclick.OnAnswerCheckClick(mUserAnswerItem);
+        }
     }
 
     @Override
     public void afterView() {
-        mBtnCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mSelectedOptionPosition >= 0 && mUserAnswerItem != null) {
-                    mIAnswerOptionOnclick.OnAnswerCheckClick(mUserAnswerItem);
-                }
-            }
-        });
+        // Init data
+        mQuestion = RealmHelper.getInstance(getContext()).getQuestion(mQuestionId);
+        mAnswers = mQuestion.getAnswers();
+        mTvAnswerOptions = new TextView[mAnswers.size()];
+        mUserAnswerItem = new UserAnswerItem();
         // Create answer options
         for (int i = 0, size = mAnswers.size(); i < size; i++) {
             final int position = i;

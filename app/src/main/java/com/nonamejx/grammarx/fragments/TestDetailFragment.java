@@ -1,7 +1,5 @@
 package com.nonamejx.grammarx.fragments;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -44,15 +42,6 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
 
     public static TestDetailFragment newInstance(String testId) {
         return TestDetailFragment_.builder().mTestId(testId).build();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mTest = RealmHelper.getInstance(getContext()).getTest(mTestId);
-        mQuestions = mTest.getQuestions();
-        mResult = new Result();
-        RealmHelper.getInstance(getContext()).addResult(mResult);
     }
 
     @Override
@@ -111,6 +100,12 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
 
     @Override
     public void afterView() {
+        // Init data
+        mTest = RealmHelper.getInstance(getContext()).getTest(mTestId);
+        mQuestions = mTest.getQuestions();
+        mResult = new Result();
+        RealmHelper.getInstance(getContext()).addResult(mResult);
+        // Replace fragment
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.animation_enter_from_right,

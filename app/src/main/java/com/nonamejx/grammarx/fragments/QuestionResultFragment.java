@@ -1,7 +1,6 @@
 package com.nonamejx.grammarx.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import com.nonamejx.grammarx.R;
 import com.nonamejx.grammarx.models.UserAnswerItem;
 
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.parceler.Parcels;
@@ -49,22 +49,17 @@ public class QuestionResultFragment extends BaseFragment {
         return fr;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mUserAnswerItem = Parcels.unwrap(getArguments().getParcelable(KEY_USER_CHOICE));
-        mTvQuestionOptions = new TextView[mUserAnswerItem.getQuestion().getAnswers().size()];
-        isCorrect = mUserAnswerItem.getUserChoice().isCorrect();
+    @Click(R.id.btnNext)
+    void onButtonNextClick() {
+        mINextQuestionClick.onNextQuestionClick(mUserAnswerItem);
     }
 
     @Override
     public void afterView() {
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mINextQuestionClick.onNextQuestionClick(mUserAnswerItem);
-            }
-        });
+        // Init data
+        mUserAnswerItem = Parcels.unwrap(getArguments().getParcelable(KEY_USER_CHOICE));
+        mTvQuestionOptions = new TextView[mUserAnswerItem.getQuestion().getAnswers().size()];
+        isCorrect = mUserAnswerItem.getUserChoice().isCorrect();
         if (isCorrect) {
             mTvQuestionResultTitle.setText(getResources().getString(R.string.textView_correct));
             mTvQuestionResultTitle.setBackgroundColor(getResources().getColor(R.color.colorDimGreen));
