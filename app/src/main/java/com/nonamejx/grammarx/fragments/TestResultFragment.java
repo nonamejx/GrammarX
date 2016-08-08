@@ -3,10 +3,7 @@ package com.nonamejx.grammarx.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,6 +21,8 @@ import com.nonamejx.grammarx.R;
 import com.nonamejx.grammarx.acitivities.MainActivity;
 import com.nonamejx.grammarx.models.Result;
 
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -32,17 +31,22 @@ import java.util.List;
 /**
  * Created by noname on 05/08/2016.
  */
-public class TestResultFragment extends Fragment {
+@EFragment(R.layout.fragment_test_result)
+public class TestResultFragment extends BaseFragment {
     private static final String KEY_TEST_RESULT = "TEST_RESULT";
 
     private Result mResult;
 
-    private TextView mTvTotalQuestions;
-    private TextView mTvCorrectAnswers;
-    private TextView mTvIncorrectAnswers;
-    private Button mBtnFinish;
-
-    private PieChart mPieChartTestResult;
+    @ViewById(R.id.tvTotalQuestions)
+    TextView mTvTotalQuestions;
+    @ViewById(R.id.tvCorrectAnswers)
+    TextView mTvCorrectAnswers;
+    @ViewById(R.id.tvIncorrectAnswers)
+    TextView mTvIncorrectAnswers;
+    @ViewById(R.id.btnFinish)
+    Button mBtnFinish;
+    @ViewById(R.id.pieChartTestResult)
+    PieChart mPieChartTestResult;
     private float[] mYData = new float[2];
     private String[] mXData = {"Correct", "Incorrect"};
 
@@ -62,18 +66,12 @@ public class TestResultFragment extends Fragment {
         mYData[1] = mResult.getUserAnswerItems().size() - mYData[0];
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_test_result, container, false);
-
-        mTvTotalQuestions = (TextView) v.findViewById(R.id.tvTotalQuestions);
-        mTvCorrectAnswers = (TextView) v.findViewById(R.id.tvCorrectAnswers);
-        mTvIncorrectAnswers = (TextView) v.findViewById(R.id.tvIncorrectAnswers);
+    public void afterView() {
         mTvTotalQuestions.setText(mResult.getUserAnswerItems().size() + "");
         mTvCorrectAnswers.setText((int) mYData[0] + "");
         mTvIncorrectAnswers.setText((int) mYData[1] + "");
-        mBtnFinish = (Button) v.findViewById(R.id.btnFinish);
+
         mBtnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,8 +79,6 @@ public class TestResultFragment extends Fragment {
             }
         });
 
-        // Inflate a chart
-        mPieChartTestResult = (PieChart) v.findViewById(R.id.pieChartTestResult);
         // Configure pie chart
         mPieChartTestResult.setUsePercentValues(true);
         mPieChartTestResult.setDescription("");
@@ -124,8 +120,6 @@ public class TestResultFragment extends Fragment {
         l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
         l.setYOffset(0f);
-
-        return v;
     }
 
     private void addDataToPieChart() {

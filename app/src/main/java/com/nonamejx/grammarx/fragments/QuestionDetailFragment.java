@@ -3,7 +3,6 @@ package com.nonamejx.grammarx.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +18,15 @@ import com.nonamejx.grammarx.models.UserAnswerItem;
 
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
 /**
  * Created by noname on 03/08/2016.
  */
-@EFragment
-public class QuestionDetailFragment extends Fragment {
+@EFragment(R.layout.fragment_question_detail)
+public class QuestionDetailFragment extends BaseFragment {
     private static final String TAG = QuestionDetailFragment.class.getName();
 
     @FragmentArg
@@ -37,10 +37,14 @@ public class QuestionDetailFragment extends Fragment {
     private UserAnswerItem mUserAnswerItem;
     private int mSelectedOptionPosition = -1;
 
-    private TextView mTvQuestionInstruction;
-    private TextView mTvQuestionTitle;
-    private Button mBtnCheck;
-    private LinearLayout mLlAnswerOptionsContainer;
+    @ViewById(R.id.tvQuestionInstruction)
+    TextView mTvQuestionInstruction;
+    @ViewById(R.id.tvQuestionTitle)
+    TextView mTvQuestionTitle;
+    @ViewById(R.id.btnCheck)
+    Button mBtnCheck;
+    @ViewById(R.id.llAnswerOptionsContainer)
+    LinearLayout mLlAnswerOptionsContainer;
     private TextView[] mTvAnswerOptions;
     private IAnswerOptionOnclickListener mIAnswerOptionOnclick;
 
@@ -63,13 +67,8 @@ public class QuestionDetailFragment extends Fragment {
         mUserAnswerItem = new UserAnswerItem();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_question_detail, container, false);
-        mTvQuestionInstruction = (TextView) v.findViewById(R.id.tvQuestionInstruction);
-        mTvQuestionTitle = (TextView) v.findViewById(R.id.tvQuestionTitle);
-        mBtnCheck = (Button) v.findViewById(R.id.btnCheck);
+    public void afterView() {
         mBtnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,10 +78,10 @@ public class QuestionDetailFragment extends Fragment {
             }
         });
         // Create answer options
-        mLlAnswerOptionsContainer = (LinearLayout) v.findViewById(R.id.llAnswerOptionsContainer);
         for (int i = 0, size = mAnswers.size(); i < size; i++) {
             final int position = i;
-            mTvAnswerOptions[i] = (TextView) inflater.inflate(R.layout.textview_answer_option, container, false);
+            // mTvAnswerOptions[i] = (TextView) inflater.inflate(R.layout.textview_answer_option, container, false);
+            mTvAnswerOptions[i] = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.textview_answer_option, null, false);
             mTvAnswerOptions[i].setText(mAnswers.get(i).getAnswerTitle());
             mTvAnswerOptions[i].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -105,7 +104,6 @@ public class QuestionDetailFragment extends Fragment {
             mLlAnswerOptionsContainer.addView(mTvAnswerOptions[i], new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
         mTvQuestionTitle.setText(mQuestion.getQuestionTitle());
-        return v;
     }
 
     public interface IAnswerOptionOnclickListener {

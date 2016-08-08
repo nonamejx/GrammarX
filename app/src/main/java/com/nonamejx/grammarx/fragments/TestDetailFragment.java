@@ -2,10 +2,6 @@ package com.nonamejx.grammarx.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,14 +16,15 @@ import com.nonamejx.grammarx.models.UserAnswerItem;
 
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
 /**
  * Created by noname on 03/08/2016.
  */
-@EFragment
-public class TestDetailFragment extends Fragment implements QuestionDetailFragment.IAnswerOptionOnclickListener, QuestionResultFragment.INextQuestionClickListener {
+@EFragment(R.layout.fragment_test_detail)
+public class TestDetailFragment extends BaseFragment implements QuestionDetailFragment.IAnswerOptionOnclickListener, QuestionResultFragment.INextQuestionClickListener {
     private static final String TAG = TestDetailFragment.class.getName();
     private static final int TYPE_QUESTION_DETAIL = 0;
     private static final int TYPE_QUESTION_RESULT = 1;
@@ -40,8 +37,10 @@ public class TestDetailFragment extends Fragment implements QuestionDetailFragme
     private Result mResult;
     private int mCurrentQuestionPosition = 0;
 
-    private TextView mTvGeneralHeaderTitle;
-    private ProgressBar mProgressBarAnsweringProgress;
+    @ViewById(R.id.tvGeneralHeaderTitle)
+    TextView mTvGeneralHeaderTitle;
+    @ViewById(R.id.progressBarAnsweringProgress)
+    ProgressBar mProgressBarAnsweringProgress;
 
     public static TestDetailFragment newInstance(String testId) {
         return TestDetailFragment_.builder().mTestId(testId).build();
@@ -54,30 +53,6 @@ public class TestDetailFragment extends Fragment implements QuestionDetailFragme
         mQuestions = mTest.getQuestions();
         mResult = new Result();
         RealmHelper.getInstance(getContext()).addResult(mResult);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_test_detail, container, false);
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.animation_enter_from_right,
-                        R.anim.animation_exit_to_left,
-                        R.anim.animation_enter_from_right,
-                        R.anim.animation_exit_to_left)
-                .add(R.id.flQuestionDetailContainer,
-                        QuestionDetailFragment.newInstance(mTest.getQuestions()
-                                .get(mCurrentQuestionPosition)
-                                .getQuestionId(),
-                                TestDetailFragment.this))
-                .commit();
-        mTvGeneralHeaderTitle = (TextView) v.findViewById(R.id.tvGeneralHeaderTitle);
-        mTvGeneralHeaderTitle.setText(mTest.getTestTitle());
-        mProgressBarAnsweringProgress = (ProgressBar) v.findViewById(R.id.progressBarAnsweringProgress);
-        mProgressBarAnsweringProgress.setMax(mQuestions.size());
-        mProgressBarAnsweringProgress.setProgressDrawable(getContext().getResources().getDrawable(R.drawable.custom_progressbar));
-        return v;
     }
 
     @Override
@@ -128,9 +103,28 @@ public class TestDetailFragment extends Fragment implements QuestionDetailFragme
                             R.anim.animation_exit_to_left)
                     .replace(R.id.flQuestionDetailContainer,
                             QuestionDetailFragment.newInstance(mTest.getQuestions()
-                                    .get(mCurrentQuestionPosition).getQuestionId(),
+                                            .get(mCurrentQuestionPosition).getQuestionId(),
                                     TestDetailFragment.this))
                     .commit();
         }
+    }
+
+    @Override
+    public void afterView() {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.animation_enter_from_right,
+                        R.anim.animation_exit_to_left,
+                        R.anim.animation_enter_from_right,
+                        R.anim.animation_exit_to_left)
+                .add(R.id.flQuestionDetailContainer,
+                        QuestionDetailFragment.newInstance(mTest.getQuestions()
+                                        .get(mCurrentQuestionPosition)
+                                        .getQuestionId(),
+                                TestDetailFragment.this))
+                .commit();
+        mTvGeneralHeaderTitle.setText(mTest.getTestTitle());
+        mProgressBarAnsweringProgress.setMax(mQuestions.size());
+        mProgressBarAnsweringProgress.setProgressDrawable(getContext().getResources().getDrawable(R.drawable.custom_progressbar));
     }
 }
