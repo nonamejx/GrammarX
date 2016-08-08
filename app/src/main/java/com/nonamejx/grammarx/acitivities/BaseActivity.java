@@ -35,10 +35,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void switchFragment(Fragment fragment) {
+    public void switchFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.flContainer, fragment);
-        ft.addToBackStack(null);
+        if (addToBackStack) {
+            ft.addToBackStack(null);
+        }
         ft.commit();
     }
 }

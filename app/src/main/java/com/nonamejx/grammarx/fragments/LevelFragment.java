@@ -65,7 +65,7 @@ public class LevelFragment extends Fragment {
             public void onClick(View view, int position) {
                 if (getContext() instanceof MainActivity) {
                     if (position > 0) {
-                        ((MainActivity) getContext()).switchFragment(TopicFragment.newInstance(mLevels.get(position - 1).getLevelId()));
+                        ((MainActivity) getContext()).switchFragment(TopicFragment.newInstance(mLevels.get(position - 1).getLevelId()), true);
                     }
                 }
             }

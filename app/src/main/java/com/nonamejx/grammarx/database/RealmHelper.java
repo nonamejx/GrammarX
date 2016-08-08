@@ -6,8 +6,10 @@ import com.nonamejx.grammarx.common.Constant;
 import com.nonamejx.grammarx.models.Answer;
 import com.nonamejx.grammarx.models.Level;
 import com.nonamejx.grammarx.models.Question;
+import com.nonamejx.grammarx.models.Result;
 import com.nonamejx.grammarx.models.Test;
 import com.nonamejx.grammarx.models.Topic;
+import com.nonamejx.grammarx.models.UserAnswerItem;
 
 import java.util.List;
 
@@ -80,7 +82,7 @@ public class RealmHelper {
     }
 
     public Test getTest(String testId) {
-        return null;
+        return mRealm.where(Test.class).equalTo(Constant.ATTR_TEST_ID, testId).findFirst();
     }
 
     public List<Question> getQuestions(String testId) {
@@ -88,7 +90,7 @@ public class RealmHelper {
     }
 
     public Question getQuestion(String questionId) {
-        return null;
+        return mRealm.where(Question.class).equalTo(Constant.ATTR_QUESTION_ID, questionId).findFirst();
     }
 
     public List<Answer> getAnswers(String questionId) {
@@ -99,4 +101,25 @@ public class RealmHelper {
         return null;
     }
 
+    public void addResult(Result mResult) {
+        mRealm.beginTransaction();
+        mRealm.copyToRealmOrUpdate(mResult);
+        mRealm.commitTransaction();
+    }
+
+    public void deleteResult(Result mResult) {
+        mRealm.beginTransaction();
+        mResult.removeFromRealm();
+        mRealm.commitTransaction();
+    }
+
+    public UserAnswerItem getUserAnswerItem(String userAnswerItemId) {
+        return mRealm.where(UserAnswerItem.class).equalTo(Constant.ATTR_USER_ANSWER_ITEM_ID, userAnswerItemId).findFirst();
+    }
+
+    public void addUserAnswerItem(UserAnswerItem userAnswerItem) {
+        mRealm.beginTransaction();
+        mRealm.copyToRealmOrUpdate(userAnswerItem);
+        mRealm.commitTransaction();
+    }
 }

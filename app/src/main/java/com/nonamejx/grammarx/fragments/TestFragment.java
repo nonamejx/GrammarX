@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nonamejx.grammarx.R;
+import com.nonamejx.grammarx.acitivities.MainActivity;
 import com.nonamejx.grammarx.adapters.TestAdapter;
 import com.nonamejx.grammarx.common.RecyclerTouchListener;
 import com.nonamejx.grammarx.database.RealmHelper;
@@ -38,7 +39,7 @@ public class TestFragment extends Fragment {
     private RecyclerView mRecyclerViewTest;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<Test> tests;
+    private List<Test> mTests;
 
     public static TestFragment newInstance(String topicId) {
         return TestFragment_.builder().mTopicId(topicId).build();
@@ -48,7 +49,7 @@ public class TestFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTopic = RealmHelper.getInstance(getContext()).getTopic(mTopicId);
-        tests = RealmHelper.getInstance(getContext()).getTests(mTopicId);
+        mTests = RealmHelper.getInstance(getContext()).getTests(mTopicId);
     }
 
     @Nullable
@@ -57,7 +58,7 @@ public class TestFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_container, container, false);
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        mAdapter = new TestAdapter(getContext(), tests, mTopic.getTopicTitle());
+        mAdapter = new TestAdapter(getContext(), mTests, mTopic.getTopicTitle());
         mRecyclerViewTest = (RecyclerView) v.findViewById(R.id.recyclerViewLevel);
         mRecyclerViewTest.setLayoutManager(mLayoutManager);
 
@@ -72,6 +73,13 @@ public class TestFragment extends Fragment {
         mRecyclerViewTest.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerViewTest, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+                if (getContext() instanceof MainActivity) {
+                    if (position == 0) {
+                        ((MainActivity) getContext()).getSupportFragmentManager().popBackStack();
+                    } else {
+                        ((MainActivity) getContext()).switchFragment(TestDetailFragment.newInstance(mTests.get(position - 1).getTestId()), true);
+                    }
+                }
             }
 
             @Override
