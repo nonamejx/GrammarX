@@ -26,6 +26,7 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
     private static final String TAG = TestDetailFragment.class.getName();
     private static final int TYPE_QUESTION_DETAIL = 0;
     private static final int TYPE_QUESTION_RESULT = 1;
+    private static final int PROGRESSBAR_ANIMATION_DURATION = 500;
 
     @FragmentArg
     String mTestId;
@@ -54,7 +55,7 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
         // set animation to progressbar
         if (mProgressBarAnsweringProgress != null) {
             ProgressbarAnimation animation = new ProgressbarAnimation(mProgressBarAnsweringProgress, mProgressBarAnsweringProgress.getProgress(), mProgressBarAnsweringProgress.getProgress() + 1);
-            animation.setDuration(500);
+            animation.setDuration(PROGRESSBAR_ANIMATION_DURATION);
             mProgressBarAnsweringProgress.startAnimation(animation);
         }
         getActivity().getSupportFragmentManager()
@@ -79,9 +80,8 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
             // add result to Realm
 
             // show TestResult fragment
-            MainActivity mainActivity = (MainActivity) getContext();
-            if (mainActivity != null) {
-                mainActivity.switchFragment(TestResultFragment.newInstance(mResult), false);
+            if (getContext() instanceof MainActivity) {
+                ((MainActivity) getContext()).switchFragment(TestResultFragment.newInstance(mResult), false);
             }
         } else {
             getActivity().getSupportFragmentManager()
