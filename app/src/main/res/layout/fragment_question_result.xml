@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvQuestionResultTitle"
+            style="@style/item_textView_study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_layout_background_top"
+            android:text="@string/fragment.questionDetail.textView.questionInstruction" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line.single_line"
+            android:background="@color/colorLightGray" />
+
+        <TextView
+            android:id="@+id/tvQuestionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            android:padding="@dimen/medium_padding"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/fragment.question_detail.text_view.question_title.text_size"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/llAnswerOptionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnNext"
+            style="@style/item_textView_study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_layout_background_bottom"
+            android:text="@string/fragment.questionDetail.textView.next"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+
