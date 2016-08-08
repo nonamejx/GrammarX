@@ -23,4 +23,8 @@
     <color name="colorDimRed">#FFCCBC</color>
     <color name="colorRed">#FF3D00</color>
 
+    <!-- chart -->
+    <color name="colorLightRed">#FF8A65</color>
+    <color name="colorDimPurple">#E1BEE7</color>
+
 </resources>
