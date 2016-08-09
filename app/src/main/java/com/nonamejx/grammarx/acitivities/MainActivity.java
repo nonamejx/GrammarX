@@ -13,11 +13,11 @@ import org.androidannotations.annotations.ViewById;
 public class MainActivity extends BaseActivity {
 
     @ViewById(R.id.toolbarMain)
-    Toolbar toolbarMain;
+    Toolbar mToolbarMain;
 
     @Override
     public void afterView() {
-        setSupportActionBar(toolbarMain);
+        setSupportActionBar(mToolbarMain);
     }
 
     @Override
