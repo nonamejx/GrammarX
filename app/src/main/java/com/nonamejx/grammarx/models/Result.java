@@ -38,6 +38,15 @@ public class Result extends RealmObject {
 		this.resultId = UUID.randomUUID().toString();
 		userAnswerItems = new RealmList<>();
 	}
-	
+
+	public int countCorrectAnswer() {
+		int count = 0;
+		for (UserAnswerItem u : userAnswerItems) {
+			if (u.getUserChoice().isCorrect()) {
+				count++;
+			}
+		}
+		return count;
+	}
 	
 }

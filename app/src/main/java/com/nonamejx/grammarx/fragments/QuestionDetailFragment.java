@@ -84,7 +84,9 @@ public class QuestionDetailFragment extends BaseFragment {
                     }
                     mSelectedOptionPosition = position;
                     mTvAnswerOptions[mSelectedOptionPosition].setBackgroundColor(getResources().getColor(R.color.colorLightOrange));
-                    mBtnCheck.setTextColor(getResources().getColor(R.color.colorBlack));
+                    if (mBtnCheck != null){
+                        mBtnCheck.setTextColor(getResources().getColor(R.color.colorBlack));
+                    }
                     mUserAnswerItem.setQuestion(mQuestion);
                     mUserAnswerItem.setUserChoice(mAnswers.get(position));
                     mIAnswerOptionOnclick.OnAnswerOptionClick(mUserAnswerItem);

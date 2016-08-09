@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nonamejx.grammarx.R;
@@ -57,6 +56,11 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             test = mTests.get(position - 1);
             ((NewTestViewHolder) holder).mTvTestTitle.setText(test.getTestTitle());
             ((NewTestViewHolder) holder).mTvTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
+        } else if (holder instanceof TakenTestViewHolder) {
+            test = mTests.get(position - 1);
+            ((TakenTestViewHolder) holder).mTvTestTitle.setText(test.getTestTitle());
+            ((TakenTestViewHolder) holder).mTvTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
+            ((TakenTestViewHolder) holder).mTvTestResult.setText(String.format("Your result: %.2f %%", (float) test.getResult().countCorrectAnswer() * 100 / test.getQuestions().size()));
         }
     }
 
@@ -108,14 +112,14 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class TakenTestViewHolder extends RecyclerView.ViewHolder {
         final TextView mTvTestTitle;
-        final TextView mTvScore;
-        final ProgressBar mProgressBarTest;
+        final TextView mTvTotalQuestion;
+        final TextView mTvTestResult;
 
         public TakenTestViewHolder(View v) {
             super(v);
             mTvTestTitle = (TextView) v.findViewById(R.id.tvTestTitle);
-            mTvScore = (TextView) v.findViewById(R.id.tvScore);
-            mProgressBarTest = (ProgressBar) v.findViewById(R.id.progressbarTest);
+            mTvTotalQuestion = (TextView) v.findViewById(R.id.tvTotalQuestion);
+            mTvTestResult = (TextView) v.findViewById(R.id.tvTestResult);
         }
     }
 

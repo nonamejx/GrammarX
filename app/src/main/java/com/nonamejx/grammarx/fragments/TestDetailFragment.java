@@ -18,6 +18,8 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
+import io.realm.Realm;
+
 /**
  * Created by noname on 03/08/2016.
  */
@@ -78,6 +80,11 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
         mResult.getUserAnswerItems().add(userAnswerItem);
         if (isEndTest()) {
             // add result to Realm
+            Realm realm = RealmHelper.getInstance(getContext()).getRealm();
+            Result result = RealmHelper.getInstance(getContext()).addResult(mResult);
+            realm.beginTransaction();
+            mTest.setResult(result);
+            realm.commitTransaction();
 
             // show TestResult fragment
             if (getContext() instanceof MainActivity) {
@@ -104,6 +111,7 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
         mTest = RealmHelper.getInstance(getContext()).getTest(mTestId);
         mQuestions = mTest.getQuestions();
         mResult = new Result();
+
         RealmHelper.getInstance(getContext()).addResult(mResult);
         // Replace fragment
         getActivity().getSupportFragmentManager()
