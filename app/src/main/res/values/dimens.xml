@@ -37,4 +37,8 @@
     <!--Textview question option-->
     <dimen name="fragment.question_detail.text_view.question_title.text_size">30dp</dimen>
     <dimen name="textview.answer_option_text_size">16dp</dimen>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar.elevation">4dp</dimen>
+    <dimen name="toolbar.height">40dp</dimen>
 </resources>
