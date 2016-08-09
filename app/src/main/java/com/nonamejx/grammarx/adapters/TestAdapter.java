@@ -54,13 +54,15 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((TestHeaderViewHolder) holder).mTvTestHeaderTitle.setText(mTopicTitle);
         } else if (holder instanceof NewTestViewHolder) {
             test = mTests.get(position - 1);
-            ((NewTestViewHolder) holder).mTvTestTitle.setText(test.getTestTitle());
-            ((NewTestViewHolder) holder).mTvTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
+            final NewTestViewHolder newTestViewHolder = (NewTestViewHolder) holder;
+            newTestViewHolder.mTvTestTitle.setText(test.getTestTitle());
+            newTestViewHolder.mTvTotalQuestion.setText(String.format(mContext.getResources().getString(R.string.title_total_questions), test.getQuestions().size()));
         } else if (holder instanceof TakenTestViewHolder) {
             test = mTests.get(position - 1);
-            ((TakenTestViewHolder) holder).mTvTestTitle.setText(test.getTestTitle());
-            ((TakenTestViewHolder) holder).mTvTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
-            ((TakenTestViewHolder) holder).mTvTestResult.setText(String.format("Your result: %.2f %%", (float) test.getResult().countCorrectAnswer() * 100 / test.getQuestions().size()));
+            final TakenTestViewHolder takenTestViewHolder = (TakenTestViewHolder) holder;
+            takenTestViewHolder.mTvTestTitle.setText(test.getTestTitle());
+            takenTestViewHolder.mTvTotalQuestion.setText(String.format(mContext.getResources().getString(R.string.title_total_questions, test.getQuestions().size())));
+            takenTestViewHolder.mTvTestResult.setText(String.format(mContext.getResources().getString(R.string.title_your_result, (float) test.getResult().countCorrectAnswer() * 100 / test.getQuestions().size())) + " %");
         }
     }
 
