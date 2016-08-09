@@ -41,4 +41,8 @@
     <!-- Toolbar -->
     <dimen name="toolbar.elevation">4dp</dimen>
     <dimen name="toolbar.height">40dp</dimen>
+
+    <!-- image -->
+    <dimen name="imageView.default.width">24dp</dimen>
+    <dimen name="imageView.default.height">24dp</dimen>
 </resources>

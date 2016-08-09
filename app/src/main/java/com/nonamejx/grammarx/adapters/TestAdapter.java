@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nonamejx.grammarx.R;
@@ -55,8 +54,15 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((TestHeaderViewHolder) holder).mTvTestHeaderTitle.setText(mTopicTitle);
         } else if (holder instanceof NewTestViewHolder) {
             test = mTests.get(position - 1);
-            ((NewTestViewHolder) holder).mTvTestTitle.setText(test.getTestTitle());
-            ((NewTestViewHolder) holder).mTvTotalQuestion.setText(String.format("Total question: %d", test.getQuestions().size()));
+            final NewTestViewHolder newTestViewHolder = (NewTestViewHolder) holder;
+            newTestViewHolder.mTvTestTitle.setText(test.getTestTitle());
+            newTestViewHolder.mTvTotalQuestion.setText(String.format(mContext.getResources().getString(R.string.title_total_questions), test.getQuestions().size()));
+        } else if (holder instanceof TakenTestViewHolder) {
+            test = mTests.get(position - 1);
+            final TakenTestViewHolder takenTestViewHolder = (TakenTestViewHolder) holder;
+            takenTestViewHolder.mTvTestTitle.setText(test.getTestTitle());
+            takenTestViewHolder.mTvTotalQuestion.setText(String.format(mContext.getResources().getString(R.string.title_total_questions, test.getQuestions().size())));
+            takenTestViewHolder.mTvTestResult.setText(String.format(mContext.getResources().getString(R.string.title_your_result, (float) test.getResult().countCorrectAnswer() * 100 / test.getQuestions().size())) + " %");
         }
     }
 
@@ -108,14 +114,14 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class TakenTestViewHolder extends RecyclerView.ViewHolder {
         final TextView mTvTestTitle;
-        final TextView mTvScore;
-        final ProgressBar mProgressBarTest;
+        final TextView mTvTotalQuestion;
+        final TextView mTvTestResult;
 
         public TakenTestViewHolder(View v) {
             super(v);
             mTvTestTitle = (TextView) v.findViewById(R.id.tvTestTitle);
-            mTvScore = (TextView) v.findViewById(R.id.tvScore);
-            mProgressBarTest = (ProgressBar) v.findViewById(R.id.progressbarTest);
+            mTvTotalQuestion = (TextView) v.findViewById(R.id.tvTotalQuestion);
+            mTvTestResult = (TextView) v.findViewById(R.id.tvTestResult);
         }
     }
 

@@ -101,10 +101,12 @@ public class RealmHelper {
         return null;
     }
 
-    public void addResult(Result mResult) {
+    public Result addResult(Result mResult) {
+        Result result;
         mRealm.beginTransaction();
-        mRealm.copyToRealmOrUpdate(mResult);
+        result = mRealm.copyToRealmOrUpdate(mResult);
         mRealm.commitTransaction();
+        return result;
     }
 
     public void deleteResult(Result mResult) {

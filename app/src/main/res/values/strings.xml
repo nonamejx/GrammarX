@@ -31,4 +31,7 @@
     <string name="textView.correct">Correct!</string>
     <string name="textView.incorrect">Incorrect!</string>
 
+    <!-- titles -->
+    <string name="title.total.questions">Total question: %d</string>
+    <string name="title.your.result">Your result: %.2f</string>
 </resources>
