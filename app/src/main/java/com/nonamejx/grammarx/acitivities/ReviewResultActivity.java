@@ -61,7 +61,6 @@ public class ReviewResultActivity extends AppCompatActivity {
     void afterView() {
         mTvHeaderTitle.setText(mTest.getTestTitle());
         mViewPageResult.setAdapter(mAdapter);
-        // mViewPageResult.setPageMargin((int) getResources().getDimension(R.dimen.default_margin));
     }
 
     @Click(R.id.tvHeaderTitle)
