@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import com.nonamejx.grammarx.models.Result;
 import com.nonamejx.grammarx.models.Test;
 import com.nonamejx.grammarx.models.UserAnswerItem;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -29,7 +27,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by noname on 09/08/2016.
  */
 @EActivity(R.layout.activity_review_result)
-public class ReviewResultActivity extends AppCompatActivity {
+public class ReviewResultActivity extends BaseActivity {
 
     @ViewById(R.id.viewPageResult)
     ViewPager mViewPageResult;
@@ -37,15 +35,12 @@ public class ReviewResultActivity extends AppCompatActivity {
     TextView mTvHeaderTitle;
 
     private ReviewResultViewPagerAdapter mAdapter;
-
-    private TestResultFragment mTestResultFragment;
     private String mTestId;
     private Test mTest;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // getSupportActionBar().hide();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mTestId = bundle.getString(Constant.ATTR_TEST_ID);
@@ -57,8 +52,13 @@ public class ReviewResultActivity extends AppCompatActivity {
         }
     }
 
-    @AfterViews
-    void afterView() {
+    @Override
+    protected Fragment createFragment() {
+        return null;
+    }
+
+    @Override
+    public void afterView() {
         mTvHeaderTitle.setText(mTest.getTestTitle());
         mViewPageResult.setAdapter(mAdapter);
     }

@@ -18,6 +18,7 @@ import com.nonamejx.grammarx.adapters.TestAdapter;
 import com.nonamejx.grammarx.common.Constant;
 import com.nonamejx.grammarx.common.RecyclerTouchListener;
 import com.nonamejx.grammarx.database.RealmHelper;
+import com.nonamejx.grammarx.fragments.dialogs.ConfirmReviewResultDialogFragment;
 import com.nonamejx.grammarx.models.Test;
 import com.nonamejx.grammarx.models.Topic;
 
