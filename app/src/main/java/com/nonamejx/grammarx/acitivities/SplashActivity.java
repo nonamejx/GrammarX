@@ -37,12 +37,14 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     public void afterView() {
+        if (RealmHelper.getInstance(SplashActivity.this).getLevels().size() == 0) {
+            mTvLoadDataStatus.setVisibility(View.VISIBLE);
+        }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Init data at the first run
                 if (RealmHelper.getInstance(SplashActivity.this).getLevels().size() == 0) {
-                    mTvLoadDataStatus.setVisibility(View.VISIBLE);
                     initDataAtFirstRun();
                 }
                 // Start MainActivity
