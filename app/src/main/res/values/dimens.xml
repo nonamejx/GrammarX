@@ -45,4 +45,7 @@
     <!-- image -->
     <dimen name="imageView.default.width">24dp</dimen>
     <dimen name="imageView.default.height">24dp</dimen>
+
+    <!-- dialog -->
+    <dimen name="dialog.default.title">20dp</dimen>
 </resources>

@@ -34,4 +34,9 @@
     <!-- titles -->
     <string name="title.total.questions">Total question: %d</string>
     <string name="title.your.result">Your result: %.2f</string>
+
+    <!-- dialog -->
+    <string name="dialog.confirmReviewResult.message">You\'ve already passed this test!</string>
+    <string name="dialog.confirmReviewResult.button.reviewResult">Review result</string>
+    <string name="dialog.confirmReviewResult.button.tryAgain">Try again</string>
 </resources>

@@ -18,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".acitivities.ReviewResultActivity_"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name=".acitivities.DoTestActivity_"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
     </application>
 
 </manifest>
