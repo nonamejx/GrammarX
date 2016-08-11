@@ -1,6 +1,5 @@
 package com.nonamejx.grammarx.acitivities;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -47,8 +46,7 @@ public class SplashActivity extends BaseActivity {
                     initDataAtFirstRun();
                 }
                 // Start MainActivity
-                Intent i = new Intent(SplashActivity.this, MainActivity_.class);
-                startActivity(i);
+                MainActivity_.intent(SplashActivity.this).start();
                 finish();
             }
         }, DELAY_DURATION);
