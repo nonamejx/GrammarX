@@ -16,7 +16,6 @@ import com.nonamejx.grammarx.acitivities.DoTestActivity_;
 import com.nonamejx.grammarx.acitivities.ReviewResultActivity_;
 import com.nonamejx.grammarx.common.Constant;
 import com.nonamejx.grammarx.database.RealmHelper;
-import com.nonamejx.grammarx.fragments.ConfirmReviewResultDialogFragment_;
 import com.nonamejx.grammarx.models.Result;
 import com.nonamejx.grammarx.models.Test;
 
