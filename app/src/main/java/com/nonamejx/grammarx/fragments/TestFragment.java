@@ -1,8 +1,10 @@
 package com.nonamejx.grammarx.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nonamejx.grammarx.R;
+import com.nonamejx.grammarx.acitivities.DoTestActivity_;
 import com.nonamejx.grammarx.acitivities.MainActivity;
 import com.nonamejx.grammarx.adapters.TestAdapter;
+import com.nonamejx.grammarx.common.Constant;
 import com.nonamejx.grammarx.common.RecyclerTouchListener;
 import com.nonamejx.grammarx.database.RealmHelper;
+import com.nonamejx.grammarx.fragments.dialogs.ConfirmReviewResultDialogFragment;
 import com.nonamejx.grammarx.models.Test;
 import com.nonamejx.grammarx.models.Topic;
 
@@ -52,6 +57,14 @@ public class TestFragment extends Fragment {
         mTests = RealmHelper.getInstance(getContext()).getTests(mTopicId);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -77,7 +90,15 @@ public class TestFragment extends Fragment {
                     if (position == 0) {
                         ((MainActivity) getContext()).getSupportFragmentManager().popBackStack();
                     } else {
-                        ((MainActivity) getContext()).switchFragment(TestDetailFragment.newInstance(mTests.get(position - 1).getTestId()), true);
+                        Test test = mTests.get(position - 1);
+                        if (test.getResult() != null) {
+                            FragmentManager fm = ((MainActivity) getContext()).getSupportFragmentManager();
+                            ConfirmReviewResultDialogFragment.newInstance(test.getTestId()).show(fm, "Title");
+                        } else {
+                            Intent intent = new Intent(getContext(), DoTestActivity_.class);
+                            intent.putExtra(Constant.ATTR_TEST_ID, test.getTestId());
+                            getContext().startActivity(intent);
+                        }
                     }
                 }
             }
