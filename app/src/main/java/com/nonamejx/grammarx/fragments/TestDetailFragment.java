@@ -1,10 +1,12 @@
 package com.nonamejx.grammarx.fragments;
 
+import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nonamejx.grammarx.R;
-import com.nonamejx.grammarx.acitivities.MainActivity;
+import com.nonamejx.grammarx.acitivities.DoTestActivity;
 import com.nonamejx.grammarx.animations.ProgressbarAnimation;
 import com.nonamejx.grammarx.database.RealmHelper;
 import com.nonamejx.grammarx.models.Question;
@@ -12,6 +14,7 @@ import com.nonamejx.grammarx.models.Result;
 import com.nonamejx.grammarx.models.Test;
 import com.nonamejx.grammarx.models.UserAnswerItem;
 
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
@@ -38,7 +41,7 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
     private Result mResult;
     private int mCurrentQuestionPosition = 0;
 
-    @ViewById(R.id.tvGeneralHeaderTitle)
+    @ViewById(R.id.tvHeaderTitle)
     TextView mTvGeneralHeaderTitle;
     @ViewById(R.id.progressBarAnsweringProgress)
     ProgressBar mProgressBarAnsweringProgress;
@@ -87,9 +90,16 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
             realm.commitTransaction();
 
             // show TestResult fragment
-            if (getContext() instanceof MainActivity) {
-                ((MainActivity) getContext()).switchFragment(TestResultFragment.newInstance(mResult), false);
-            }
+            mProgressBarAnsweringProgress.setVisibility(View.GONE);
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.animation_enter_from_right,
+                            R.anim.animation_exit_to_left,
+                            R.anim.animation_enter_from_right,
+                            R.anim.animation_exit_to_left)
+                    .replace(R.id.flQuestionDetailContainer,
+                            TestResultFragment.newInstance(mResult))
+                    .commit();
         } else {
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -112,22 +122,33 @@ public class TestDetailFragment extends BaseFragment implements QuestionDetailFr
         mQuestions = mTest.getQuestions();
         mResult = new Result();
 
-        RealmHelper.getInstance(getContext()).addResult(mResult);
         // Replace fragment
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.animation_enter_from_right,
-                        R.anim.animation_exit_to_left,
-                        R.anim.animation_enter_from_right,
-                        R.anim.animation_exit_to_left)
-                .add(R.id.flQuestionDetailContainer,
-                        QuestionDetailFragment.newInstance(mTest.getQuestions()
-                                        .get(mCurrentQuestionPosition)
-                                        .getQuestionId(),
-                                TestDetailFragment.this))
-                .commit();
+        final Fragment fr = getActivity().getSupportFragmentManager().findFragmentById(R.id.flQuestionDetailContainer);
+        if (fr == null) {
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.animation_enter_from_right,
+                            R.anim.animation_exit_to_left,
+                            R.anim.animation_enter_from_right,
+                            R.anim.animation_exit_to_left)
+                    .add(R.id.flQuestionDetailContainer,
+                            QuestionDetailFragment.newInstance(mTest.getQuestions()
+                                            .get(mCurrentQuestionPosition)
+                                            .getQuestionId(),
+                                    TestDetailFragment.this))
+                    .commit();
+        } else if (fr instanceof TestResultFragment) {
+            mProgressBarAnsweringProgress.setVisibility(View.GONE);
+        }
         mTvGeneralHeaderTitle.setText(mTest.getTestTitle());
         mProgressBarAnsweringProgress.setMax(mQuestions.size());
         mProgressBarAnsweringProgress.setProgressDrawable(getContext().getResources().getDrawable(R.drawable.custom_progressbar));
+    }
+
+    @Click(R.id.tvHeaderTitle)
+    void onHeaderTitleClick() {
+        if (getContext() instanceof DoTestActivity) {
+            ((DoTestActivity) getContext()).finish();
+        }
     }
 }

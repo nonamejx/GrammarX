@@ -85,7 +85,7 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public TestHeaderViewHolder(View v) {
             super(v);
-            mTvTestHeaderTitle = (TextView) v.findViewById(R.id.tvGeneralHeaderTitle);
+            mTvTestHeaderTitle = (TextView) v.findViewById(R.id.tvHeaderTitle);
 
             // Register onClick listener
             mTvTestHeaderTitle.setOnClickListener(new View.OnClickListener() {

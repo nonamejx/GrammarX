@@ -23,6 +23,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
+    private static final int PROGRESSBAR_ANIMATION_DURATION = 250;
 
     private final Context mContext;
     private final List<Topic> mTopics;
@@ -61,8 +62,8 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ((TopicItemViewHolder) holder).mTvTopicProgress.setText(String.format("%d of %d tests completed", progress, progressBarTopic.getMax()));
 
             // Set animation to progressbar
-            ProgressbarAnimation animation = new ProgressbarAnimation(progressBarTopic, 0, progressBarTopic.getMax() / 2);
-            animation.setDuration(250);
+            ProgressbarAnimation animation = new ProgressbarAnimation(progressBarTopic, 0, progress);
+            animation.setDuration(PROGRESSBAR_ANIMATION_DURATION);
             progressBarTopic.startAnimation(animation);
         }
     }
@@ -82,7 +83,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         public TopicHeaderViewHolder(View itemView) {
             super(itemView);
-            mTvHeader = (TextView) itemView.findViewById(R.id.tvGeneralHeaderTitle);
+            mTvHeader = (TextView) itemView.findViewById(R.id.tvHeaderTitle);
         }
     }
 
@@ -98,7 +99,6 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mTvTopicProgress = (TextView) itemView.findViewById(R.id.tvTopicProgress);
             mTvStudyTopic = (TextView) itemView.findViewById(R.id.tvStudyTopic);
             mProgressBarTopic = (ProgressBar) itemView.findViewById(R.id.progressbarTopic);
-
             // Set drawable to progressbar
             mProgressBarTopic.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.custom_progressbar));
         }

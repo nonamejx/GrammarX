@@ -2,7 +2,6 @@ package com.nonamejx.grammarx.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -16,7 +15,6 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.nonamejx.grammarx.R;
-import com.nonamejx.grammarx.acitivities.MainActivity;
 import com.nonamejx.grammarx.models.Result;
 
 import org.androidannotations.annotations.Click;
@@ -43,8 +41,8 @@ public class TestResultFragment extends BaseFragment {
     TextView mTvCorrectAnswers;
     @ViewById(R.id.tvIncorrectAnswers)
     TextView mTvIncorrectAnswers;
-    @ViewById(R.id.btnFinish)
-    Button mBtnFinish;
+    @ViewById(R.id.tvFinish)
+    TextView mTvFinish;
     @ViewById(R.id.pieChartTestResult)
     PieChart mPieChartTestResult;
     private float[] mYData = new float[2];
@@ -58,9 +56,9 @@ public class TestResultFragment extends BaseFragment {
         return fr;
     }
 
-    @Click(R.id.btnFinish)
+    @Click(R.id.tvFinish)
     void onButtonFinishClick() {
-        ((MainActivity) getContext()).getSupportFragmentManager().popBackStack();
+        getActivity().finish();
     }
 
     @Override
