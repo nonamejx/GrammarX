@@ -20,9 +20,6 @@ import org.androidannotations.annotations.EFragment;
 
 import java.util.List;
 
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
-
 /**
  * Created by noname on 01/08/2016.
  */
@@ -52,12 +49,7 @@ public class LevelFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerViewLevel = (RecyclerView) v.findViewById(R.id.recyclerViewLevel);
         mRecyclerViewLevel.setLayoutManager(mLayoutManager);
-
-        // Create animation adapter
-        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
-        ScaleInAnimationAdapter scaleInAdapter = new ScaleInAnimationAdapter(alphaAdapter);
-
-        mRecyclerViewLevel.setAdapter(scaleInAdapter);
+        mRecyclerViewLevel.setAdapter(mAdapter);
 
         // Register onClick for recycler view
         mRecyclerViewLevel.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerViewLevel, new RecyclerTouchListener.ClickListener() {

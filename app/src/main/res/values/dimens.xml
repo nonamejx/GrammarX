@@ -48,4 +48,9 @@
 
     <!-- dialog -->
     <dimen name="dialog.default.title">20dp</dimen>
+
+    <!-- splash scree -->
+    <dimen name="splashScreen.textView.appName.textSize">40dp</dimen>
+    <dimen name="splashScreen.textView.loadStatus.textSize">16dp</dimen>
+
 </resources>

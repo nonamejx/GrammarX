@@ -9,6 +9,10 @@
         <item>all-levels-quizzes.json</item>
     </string-array>
 
+    <!-- font names -->
+    <string name="default_font_name">SERIF</string>
+    <string name="custom_font_name">fonts/Roboto-Light.ttf</string>
+
     <!-- Level header title -->
     <string name="item.level.textView.level_header_title">Levels</string>
 
@@ -39,4 +43,7 @@
     <string name="dialog.confirmReviewResult.message">You\'ve already passed this test!</string>
     <string name="dialog.confirmReviewResult.button.reviewResult">Review result</string>
     <string name="dialog.confirmReviewResult.button.tryAgain">Try again</string>
+
+    <!-- splash screen -->
+    <string name="splashScreen.loadStatus">Loading data ...</string>
 </resources>
