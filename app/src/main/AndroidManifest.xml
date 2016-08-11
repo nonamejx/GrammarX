@@ -10,14 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".acitivities.MainActivity_"
-            android:configChanges="keyboard|orientation">
+            android:name=".acitivities.SplashActivity_"
+            android:configChanges="keyboard|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".acitivities.MainActivity_"
+            android:configChanges="keyboard|orientation|screenSize" />
         <activity
             android:name=".acitivities.ReviewResultActivity_"
             android:configChanges="keyboardHidden|orientation|screenSize" />
