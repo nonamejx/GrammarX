@@ -1,2 +1,2 @@
 # GrammarX
-https://play.google.com/store/apps/details?id=com.nonamejx.grammarx
+"4 month test experience, for the English learning app"
